@@ -51,7 +51,7 @@ export const silverWeddingTemplateData: WeddingTemplateData = {
   invitation: {
     title: "Invitacion",
     names: ["Sofia", "Daniel"],
-    copy: "Con alegria queremos invitarte a celebrar con nosotros el inicio de esta nueva etapa, rodeados del amor de nuestras familias y amigos.",
+    copy: "Con alegría queremos invitarte a celebrar con nosotros el inicio de esta nueva etapa, rodeados del amor de nuestras familias y amigos.",
     day: "Sabado",
     date: "24 · Octubre · 2026",
   },
@@ -87,7 +87,7 @@ export const silverWeddingTemplateData: WeddingTemplateData = {
     ],
     supportImage: weddingImageSecondary,
     venueType: "Parroquia",
-    venueName: "El Senor de la Misericordia",
+    venueName: "El Señor de la Misericordia",
     time: "Hora: 17:00 hrs.",
     addressLines: [
       "Pueblo Serena,",
@@ -97,8 +97,8 @@ export const silverWeddingTemplateData: WeddingTemplateData = {
     ],
   },
   reception: {
-    sectionLabel: "Recepcion",
-    title: "Recepcion",
+    sectionLabel: "Recepción",
+    title: "Recepción",
     slides: [
       { image: receptionSlideOne, alt: "Vista del salon de recepcion con montaje para el evento" },
       { image: receptionSlideTwo, alt: "Espacio de atrium eventos preparado para la recepcion" },
@@ -116,7 +116,7 @@ export const silverWeddingTemplateData: WeddingTemplateData = {
   },
   padrinos: {
     heading: "Nuestros Padrinos",
-    kicker: "Con carino",
+    kicker: "Con cariño",
     slides: [
       {
         image: padrinosSlideOne,
@@ -134,15 +134,15 @@ export const silverWeddingTemplateData: WeddingTemplateData = {
   },
   details: {
     dressCode: {
-      kicker: "Codigo de Vestimenta",
+      kicker: "Código de Vestimenta",
       title: "Formal",
       image: formalDressImage,
       note: "Agradecemos evitar el color blanco.",
     },
     gifts: {
       kicker: "Mesa de Regalos",
-      title: "Con mucho carino",
-      copy: "Tu presencia es lo mas importante para nosotros. Si deseas tener un detalle, compartimos estas opciones con mucho agradecimiento.",
+      title: "Con mucho cariño",
+      copy: "Tu presencia es lo más importante para nosotros. Si deseas tener un detalle, compartimos estas opciones con mucho agradecimiento.",
       eventCode: "Evento #51000000",
       liverpoolLogo: liverpoolGiftImage,
       envelopeIcon: envelopeGiftImage,
@@ -154,15 +154,15 @@ export const silverWeddingTemplateData: WeddingTemplateData = {
     photo: weddingImagePrimary,
     invitationLabel: "Familia Montiel Leiva",
     familyName: "Nuestra boda",
-    guestCount: "Con inmensa alegria te invitamos a celebrar nuestra boda.",
+    guestCount: "Con inmensa alegría te invitamos a celebrar nuestra boda.",
     note: "",
-    intro: "Favor de confirmar tu asistencia a mas tardar un mes antes del evento.",
+    intro: "Favor de confirmar tu asistencia a más tardar un mes antes del evento.",
     dedicationLabel: "Dedica unas palabras para los novios:",
     whatsappLink: "https://api.whatsapp.com/send?text=Hola,%20confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Sofia%20y%20Daniel.",
     whatsappLabel: "Confirmar",
   },
   closing: {
-    message: "Nuestra felicidad estara completa al compartir este dia con las personas que mas queremos.",
+    message: "Nuestra felicidad estará completa al compartir este día con las personas que más queremos.",
     accent: "Te esperamos",
     footerText: "S & D · Nuestra Boda",
   },

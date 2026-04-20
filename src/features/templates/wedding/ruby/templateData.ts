@@ -112,7 +112,7 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
   invitation: {
     title: "Invitacion",
     names: ["Sofia", "Daniel"],
-    copy: "Deseamos celebrar el amor y la union con la bendicion de Dios, por eso nos complace que nos acompanes a vivir el inicio de este nuevo viaje.",
+    copy: "Deseamos celebrar el amor y la unión con la bendición de Dios, por eso nos complace que nos acompañes a vivir el inicio de este nuevo viaje.",
     day: "Sabado",
     date: "24 - Octubre - 2026",
   },
@@ -148,7 +148,7 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
     ],
     supportImage: weddingImageSecondary,
     venueType: "Parroquia",
-    venueName: "El Senor de la Misericordia",
+    venueName: "El Señor de la Misericordia",
     time: "Hora: 17:00 hrs.",
     addressLines: [
       "Direccion:",
@@ -160,7 +160,7 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
   },
   reception: {
     sectionLabel: "Celebracion",
-    title: "Recepcion",
+    title: "Recepción",
     slides: [
       { image: receptionSlideOne, alt: "Vista del salon de recepcion con montaje para el evento" },
       { image: receptionSlideTwo, alt: "Espacio de atrium eventos preparado para la recepcion" },
@@ -179,7 +179,7 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
   },
   padrinos: {
     heading: "Nuestros Padrinos",
-    kicker: "Con carino",
+    kicker: "Con cariño",
     slides: [
       {
         image: padrinosSlideOne,
@@ -197,15 +197,15 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
   },
   details: {
     dressCode: {
-      kicker: "Codigo de Vestimenta",
+      kicker: "Código de Vestimenta",
       title: "Formal",
       image: formalDressImage,
       note: "No utilizar color blanco.",
     },
     gifts: {
       kicker: "Mesa de Regalos",
-      title: "Con mucho carino",
-      copy: "Gracias por su compania en esta nueva etapa que comenzamos. El regalo es opcional, la asistencia es obligatoria. Si quieres tener un detalle con nosotros dejaremos algunas opciones que recibiremos con mucho carino.",
+      title: "Con mucho cariño",
+      copy: "Gracias por su compañía en esta nueva etapa que comenzamos. El regalo es opcional, la asistencia es obligatoria. Si quieres tener un detalle con nosotros dejaremos algunas opciones que recibiremos con mucho cariño.",
       eventCode: "#51000000",
       liverpoolLogo: liverpoolGiftImage,
       giftIllustration: giftBoxImage,
@@ -213,18 +213,18 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
     },
   },
   rsvp: {
-    kicker: "Acompananos",
+    kicker: "Acompáñanos",
     title: "Confirma tu Asistencia",
     photo: weddingImageDetail,
     invitationLabel: "Familia Montiel Leiva",
     familyName: "4 invitados",
-    guestCount: "Con inmensa alegria te invitamos a celebrar nuestra boda.",
+    guestCount: "Con inmensa alegría te invitamos a celebrar nuestra boda.",
     note: "",
-    intro: "Favor de confirmar su presencia, a mas tardar un mes antes del evento. Muchas gracias.",
+    intro: "Favor de confirmar su presencia, a más tardar un mes antes del evento. Muchas gracias.",
     dedicationLabel: "Dedica unas bonitas palabras para Yuliana y Jaime:",
   },
   closing: {
-    message: "Nuestra felicidad solo esta completa cuando la compartimos con las personas a las que amamos.",
+    message: "Nuestra felicidad solo está completa cuando la compartimos con las personas a las que amamos.",
     accent: "Te esperamos",
     footerText: "S & D · Nuestra Boda",
   },

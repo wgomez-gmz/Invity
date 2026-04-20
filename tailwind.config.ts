@@ -1,0 +1,62 @@
+import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
+
+const config: Config = {
+  darkMode: ["class"],
+  content: [
+    "./index.html",
+    "./src/**/*.{ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        invity: {
+          primary: "#1F7A7A",
+          secondary: "#D4AF37",
+          dark: "#1A2A44",
+          background: "#F7F7F7",
+          white: "#FFFFFF",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+        xl: "1rem",
+        "2xl": "1.25rem",
+      },
+      fontFamily: {
+        sans: ["Segoe UI", "Tahoma", "Geneva", "Verdana", "sans-serif"],
+        serif: ["Georgia", "Times New Roman", "serif"],
+      },
+    },
+  },
+  plugins: [animate],
+};
+
+export default config;

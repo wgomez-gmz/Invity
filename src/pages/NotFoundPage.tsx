@@ -5,8 +5,8 @@ export function NotFoundPage() {
     <section className="centered-page">
       <div className="panel compact-panel">
         <span className="badge">404</span>
-        <h2>P&aacute;gina no encontrada</h2>
-        <p>La ruta que intentaste abrir no existe todav&iacute;a.</p>
+        <h2>Esta pagina no se encuentra disponible.</h2>
+        <p>La ruta que intentaste abrir no forma parte de la experiencia actual de Invity.</p>
         <Link className="primary-button" to="/">
           Volver al inicio
         </Link>

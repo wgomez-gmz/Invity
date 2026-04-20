@@ -1,4 +1,5 @@
 import { useEffect, useState, type CSSProperties } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Link } from "react-router-dom";
 import type { CategoryEntry, PackageTier } from "@/features/catalog/catalogData";
 import type {
@@ -68,6 +69,7 @@ export function RubyWeddingTemplate({
   data,
   runtime,
 }: RubyWeddingTemplateProps) {
+  const prefersReducedMotion = useReducedMotion();
   const heroSlide = data.hero.slides[runtime.activeWeddingSlide];
   const padrinoSlide = data.padrinos.slides[runtime.activePadrinosSlide];
   const [isEntryModalOpen, setIsEntryModalOpen] = useState(true);
@@ -117,37 +119,105 @@ export function RubyWeddingTemplate({
     };
   }, [isEntryModalOpen]);
 
+  const textReveal = (delay = 0, y = 22) =>
+    prefersReducedMotion
+      ? {}
+      : {
+          initial: { opacity: 0, y, filter: "blur(10px)" },
+          whileInView: { opacity: 1, y: 0, filter: "blur(0px)" },
+          viewport: { once: true, amount: 0.42 },
+          transition: {
+            duration: 0.95,
+            delay,
+            ease: [0.19, 1, 0.22, 1] as const,
+          },
+        };
+
+  const surfaceReveal = (delay = 0, y = 28, scale = 0.985) =>
+    prefersReducedMotion
+      ? {}
+      : {
+          initial: { opacity: 0, y, scale, filter: "blur(12px)" },
+          whileInView: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },
+          viewport: { once: true, amount: 0.34 },
+          transition: {
+            duration: 1.1,
+            delay,
+            ease: [0.16, 1, 0.3, 1] as const,
+          },
+        };
+
+  const slideTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 1.2, ease: [0.22, 1, 0.36, 1] as const };
+  const hoverLift = prefersReducedMotion ? undefined : { y: -2, scale: 1.02 };
+  const tapPress = prefersReducedMotion ? undefined : { y: 0, scale: 0.985 };
+
   return (
     <div className="template-shell template-ruby-modal-shell" style={rubyShellStyle}>
-      {isEntryModalOpen ? (
-        <div className="ruby-entry-modal" role="dialog" aria-modal="true" aria-label="Abrir invitacion">
-          <div className="ruby-entry-modal-backdrop" aria-hidden="true">
-            <img src={heroSlide.image} alt="" />
-          </div>
-          <div className="ruby-entry-modal-overlay" aria-hidden="true" />
-
-          <div className="ruby-entry-modal-card">
-            <div className="ruby-entry-logo">
-              <img src={data.hero.logo} alt="Logo de los novios" />
-            </div>
-
-            <div className="ruby-entry-copy">
-              <span className="ruby-entry-kicker">Nuestra Boda</span>
-              <h1>{data.hero.names}</h1>
-              <p>{data.hero.date}</p>
-              <span>{data.hero.place}</span>
-            </div>
-
-            <button
-              className="ruby-entry-button"
-              type="button"
-              onClick={() => setIsEntryModalOpen(false)}
+      <AnimatePresence>
+        {isEntryModalOpen ? (
+          <motion.div
+            className="ruby-entry-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Abrir invitacion"
+            initial={prefersReducedMotion ? false : { opacity: 0 }}
+            animate={prefersReducedMotion ? {} : { opacity: 1 }}
+            exit={prefersReducedMotion ? {} : { opacity: 0 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.div
+              className="ruby-entry-modal-backdrop"
+              aria-hidden="true"
+              initial={prefersReducedMotion ? false : { scale: 1.06, opacity: 0 }}
+              animate={prefersReducedMotion ? {} : { scale: 1, opacity: 1 }}
+              exit={prefersReducedMotion ? {} : { scale: 1.02, opacity: 0 }}
+              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             >
-              Entrar
-            </button>
-          </div>
-        </div>
-      ) : null}
+              <img src={heroSlide.image} alt="" />
+            </motion.div>
+            <motion.div
+              className="ruby-entry-modal-overlay"
+              aria-hidden="true"
+              initial={prefersReducedMotion ? false : { opacity: 0 }}
+              animate={prefersReducedMotion ? {} : { opacity: 1 }}
+              exit={prefersReducedMotion ? {} : { opacity: 0 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            />
+
+            <motion.div
+              className="ruby-entry-modal-card"
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 28, scale: 0.97, filter: "blur(12px)" }}
+              animate={prefersReducedMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              exit={prefersReducedMotion ? {} : { opacity: 0, y: 22, scale: 0.985, filter: "blur(8px)" }}
+              transition={{ duration: 0.9, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <motion.div className="ruby-entry-logo" {...surfaceReveal(0.18, 18, 0.99)}>
+                <img src={data.hero.logo} alt="Logo de los novios" />
+              </motion.div>
+
+              <div className="ruby-entry-copy">
+                <motion.span className="ruby-entry-kicker" {...textReveal(0.26, 14)}>Nuestra Boda</motion.span>
+                <motion.h1 {...textReveal(0.34, 18)}>{data.hero.names}</motion.h1>
+                <motion.p {...textReveal(0.44, 14)}>{data.hero.date}</motion.p>
+                <motion.span {...textReveal(0.52, 14)}>{data.hero.place}</motion.span>
+              </div>
+
+              <motion.button
+                className="ruby-entry-button"
+                type="button"
+                onClick={() => setIsEntryModalOpen(false)}
+                {...surfaceReveal(0.62, 18, 0.985)}
+                whileHover={prefersReducedMotion ? undefined : { y: -3, scale: 1.01 }}
+                whileTap={prefersReducedMotion ? undefined : { y: 0, scale: 0.99 }}
+              >
+                Entrar
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
 
       <div className="template-topline">
         <Link className="template-back template-back-light" to={`/categoria/${category.slug}`}>
@@ -160,55 +230,73 @@ export function RubyWeddingTemplate({
 
       <section className="cinema-modal scroll-reveal reveal-fade-scale is-visible">
         <div className="cinema-slideshow-layer" aria-hidden="true">
-          {data.hero.slides.map((slide, index) => (
-            <img
-              key={slide.alt}
-              className={index === runtime.activeWeddingSlide ? "cinema-slide cinema-slide-active" : "cinema-slide"}
-              src={slide.image}
+          <AnimatePresence mode="sync">
+            <motion.img
+              key={`${runtime.activeWeddingSlide}-${heroSlide.alt}`}
+              className="cinema-slide cinema-slide-active"
+              src={heroSlide.image}
               alt=""
+              initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.06 }}
+              animate={prefersReducedMotion ? {} : { opacity: 1, scale: 1 }}
+              exit={prefersReducedMotion ? {} : { opacity: 0, scale: 1.02 }}
+              transition={slideTransition}
             />
-          ))}
+          </AnimatePresence>
           <div className="cinema-slideshow-overlay" />
         </div>
 
         <div className="cinema-modal-copy">
-          <div className="cinema-logo-lockup">
+          <motion.div className="cinema-logo-lockup" {...surfaceReveal(0.12, 20, 0.985)}>
             <img src={data.hero.logo} alt="Logo de los novios" />
-          </div>
+          </motion.div>
 
-          <div className="cinema-event-card">
-            <p className="cinema-event-kicker">Save the date</p>
-            <h2>{data.hero.names}</h2>
-            <p>{data.hero.date}</p>
-            <span>{data.hero.place}</span>
-          </div>
+          <motion.div className="cinema-event-card" {...surfaceReveal(0.26, 26, 0.98)}>
+            <motion.p className="cinema-event-kicker" {...textReveal(0.34, 12)}>Save the date</motion.p>
+            <motion.h2 {...textReveal(0.42, 18)}>{data.hero.names}</motion.h2>
+            <motion.p {...textReveal(0.5, 14)}>{data.hero.date}</motion.p>
+            <motion.span {...textReveal(0.58, 14)}>{data.hero.place}</motion.span>
+          </motion.div>
 
           <div className="cinema-slide-indicators" aria-label="Galeria principal">
             {data.hero.slides.map((slide, index) => (
-              <button
+              <motion.button
                 key={slide.alt}
                 type="button"
                 className={index === runtime.activeWeddingSlide ? "cinema-indicator cinema-indicator-active" : "cinema-indicator"}
                 aria-label={`Ir a foto ${index + 1}`}
                 onClick={() => runtime.setActiveWeddingSlide(index)}
+                whileHover={hoverLift}
+                whileTap={tapPress}
               />
             ))}
           </div>
         </div>
 
         <div className="cinema-gallery">
-          <article className="cinema-shot cinema-shot-main cinema-shot-featured parallax-shell" data-parallax-speed="0.45">
+          <motion.article
+            className="cinema-shot cinema-shot-main cinema-shot-featured parallax-shell"
+            data-parallax-speed="0.45"
+            {...surfaceReveal(0.18, 22, 0.985)}
+          >
             <img src={heroSlide.image} alt={heroSlide.alt} />
-          </article>
+          </motion.article>
 
           <div className="cinema-shot-stack">
-            <article className="cinema-shot cinema-shot-vertical parallax-shell" data-parallax-speed="0.3">
+            <motion.article
+              className="cinema-shot cinema-shot-vertical parallax-shell"
+              data-parallax-speed="0.3"
+              {...surfaceReveal(0.28, 24, 0.985)}
+            >
               <img src={data.hero.supportImage} alt="Detalle romantico de la pareja en una toma editorial" />
-            </article>
+            </motion.article>
 
-            <article className="cinema-shot cinema-shot-detail parallax-shell" data-parallax-speed="0.25">
+            <motion.article
+              className="cinema-shot cinema-shot-detail parallax-shell"
+              data-parallax-speed="0.25"
+              {...surfaceReveal(0.38, 24, 0.985)}
+            >
               <img src={data.hero.detailImage} alt="Escena cinematografica de la sesion de boda" />
-            </article>
+            </motion.article>
           </div>
         </div>
       </section>
@@ -219,9 +307,11 @@ export function RubyWeddingTemplate({
         style={resolveBackgroundStyle(appearance?.sectionBackgrounds?.quote)}
       >
         <div className="quote-story-copy">
-          <span className="quote-story-kicker">{data.quote.kicker}</span>
-          <blockquote className="quote-story-text">{data.quote.text}</blockquote>
-          <p className="quote-story-note">{data.quote.note}</p>
+          <motion.span className="quote-story-kicker" {...textReveal(0.08, 18)}>{data.quote.kicker}</motion.span>
+          <motion.blockquote className="quote-story-text" {...textReveal(0.2, 26)}>
+            {data.quote.text}
+          </motion.blockquote>
+          <motion.p className="quote-story-note" {...textReveal(0.34, 20)}>{data.quote.note}</motion.p>
         </div>
 
         <div className="quote-story-photo-frame">
@@ -241,22 +331,26 @@ export function RubyWeddingTemplate({
           <div className="invitation-info-ornament invitation-info-ornament-right" aria-hidden="true" />
 
           <header className="invitation-info-header">
-            <h2 className="invitation-couple-name">{data.invitation.names[0]}</h2>
-            <div className="invitation-divider">
+            <motion.h2 className="invitation-couple-name" {...textReveal(0.14, 18)}>
+              {data.invitation.names[0]}
+            </motion.h2>
+            <motion.div className="invitation-divider" {...textReveal(0.24, 14)}>
               <span />
               <strong>&</strong>
               <span />
-            </div>
-            <h2 className="invitation-couple-name">{data.invitation.names[1]}</h2>
+            </motion.div>
+            <motion.h2 className="invitation-couple-name" {...textReveal(0.3, 18)}>
+              {data.invitation.names[1]}
+            </motion.h2>
           </header>
 
-          <p className="invitation-info-copy">{data.invitation.copy}</p>
+          <motion.p className="invitation-info-copy" {...textReveal(0.38, 22)}>{data.invitation.copy}</motion.p>
 
-          <div className="invitation-date-block">
+          <motion.div className="invitation-date-block" {...textReveal(0.5, 20)}>
             <span className="invitation-day-label">{data.invitation.day}</span>
             <span className="invitation-date-line" />
             <p className="invitation-date">{data.invitation.date}</p>
-          </div>
+          </motion.div>
         </article>
       </section>
 
@@ -265,7 +359,7 @@ export function RubyWeddingTemplate({
         style={resolveBackgroundStyle(appearance?.sectionBackgrounds?.parents)}
       >
         <div className="parents-heading">
-          <h3>{data.parents.heading}</h3>
+          <motion.h3 {...textReveal(0.08, 18)}>{data.parents.heading}</motion.h3>
         </div>
 
         <div className="parents-grid">
@@ -273,22 +367,22 @@ export function RubyWeddingTemplate({
             <div className="parent-icon" aria-hidden="true">
               <img src={data.parents.bride.icon} alt="" className="parent-icon-image" />
             </div>
-            <p>{renderParentLines(data.parents.bride.lines)}</p>
+            <motion.p {...textReveal(0.24, 18)}>{renderParentLines(data.parents.bride.lines)}</motion.p>
           </article>
 
-          <div className="parents-divider-column" aria-hidden="true">
+          <motion.div className="parents-divider-column" aria-hidden="true" {...textReveal(0.18, 14)}>
             <span>-</span><span>N</span><span>O</span><span>V</span><span>I</span><span>A</span><span>-</span>
-          </div>
+          </motion.div>
 
-          <div className="parents-divider-column" aria-hidden="true">
+          <motion.div className="parents-divider-column" aria-hidden="true" {...textReveal(0.22, 14)}>
             <span>-</span><span>N</span><span>O</span><span>V</span><span>I</span><span>O</span><span>-</span>
-          </div>
+          </motion.div>
 
           <article className="parent-card">
             <div className="parent-icon" aria-hidden="true">
               <img src={data.parents.groom.icon} alt="" className="parent-icon-image" />
             </div>
-            <p>{renderParentLines(data.parents.groom.lines)}</p>
+            <motion.p {...textReveal(0.3, 18)}>{renderParentLines(data.parents.groom.lines)}</motion.p>
           </article>
         </div>
       </section>
@@ -300,7 +394,7 @@ export function RubyWeddingTemplate({
         </div>
 
         <div className="countdown-content">
-          <span className="countdown-kicker">{data.countdown.kicker}</span>
+          <motion.span className="countdown-kicker" {...textReveal(0.1, 16)}>{data.countdown.kicker}</motion.span>
           <div className="countdown-grid">
             {data.countdown.items.map((item) => (
               <article key={item.label} className="countdown-card">
@@ -317,19 +411,23 @@ export function RubyWeddingTemplate({
         style={resolveBackgroundStyle(appearance?.sectionBackgrounds?.location)}
       >
         <div className="location-heading">
-          <span>{data.ceremony.sectionLabel}</span>
+          <motion.span {...textReveal(0.08, 18)}>{data.ceremony.sectionLabel}</motion.span>
         </div>
 
         <div className="location-stage">
           <div className="location-carousel" aria-label="Fotos de la iglesia">
-            {data.ceremony.slides.map((slide, index) => (
-              <img
-                key={slide.alt}
-                className={index === runtime.activeChurchSlide ? "location-carousel-image location-carousel-image-active" : "location-carousel-image"}
-                src={slide.image}
-                alt={slide.alt}
+            <AnimatePresence mode="sync">
+              <motion.img
+                key={`${runtime.activeChurchSlide}-${data.ceremony.slides[runtime.activeChurchSlide]?.alt ?? "church"}`}
+                className="location-carousel-image location-carousel-image-active"
+                src={data.ceremony.slides[runtime.activeChurchSlide]?.image}
+                alt={data.ceremony.slides[runtime.activeChurchSlide]?.alt ?? ""}
+                initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.05 }}
+                animate={prefersReducedMotion ? {} : { opacity: 1, scale: 1 }}
+                exit={prefersReducedMotion ? {} : { opacity: 0, scale: 1.02 }}
+                transition={slideTransition}
               />
-            ))}
+            </AnimatePresence>
           </div>
 
           <div className="location-underlay-photo" aria-hidden="true">
@@ -337,7 +435,7 @@ export function RubyWeddingTemplate({
           </div>
 
           <article className="location-card">
-            <div className="location-card-topbar">{data.ceremony.title}</div>
+            <motion.div className="location-card-topbar" {...textReveal(0.16, 14)}>{data.ceremony.title}</motion.div>
             <div className="location-card-body">
               <div className="location-card-icon" aria-hidden="true">
                 <svg viewBox="0 0 64 64">
@@ -348,11 +446,21 @@ export function RubyWeddingTemplate({
                   <path d="M24 30l8-8 8 8" />
                 </svg>
               </div>
-              <p className="location-card-kicker">{data.ceremony.venueType}</p>
-              <h3>{data.ceremony.venueName}</h3>
-              <p className="location-card-time">{data.ceremony.time}</p>
-              <p className="location-card-address">{renderAddress(data.ceremony.addressLines)}</p>
-              <button className="location-map-button" type="button">Ver mapa</button>
+              <motion.p className="location-card-kicker" {...textReveal(0.26, 16)}>{data.ceremony.venueType}</motion.p>
+              <motion.h3 {...textReveal(0.34, 18)}>{data.ceremony.venueName}</motion.h3>
+              <motion.p className="location-card-time" {...textReveal(0.42, 16)}>{data.ceremony.time}</motion.p>
+              <motion.p className="location-card-address" {...textReveal(0.5, 18)}>
+                {renderAddress(data.ceremony.addressLines)}
+              </motion.p>
+              <motion.button
+                className="location-map-button"
+                type="button"
+                {...textReveal(0.6, 16)}
+                whileHover={hoverLift}
+                whileTap={tapPress}
+              >
+                Ver mapa
+              </motion.button>
             </div>
           </article>
         </div>
@@ -364,14 +472,18 @@ export function RubyWeddingTemplate({
       >
         <div className="location-stage">
           <div className="location-carousel" aria-label="Fotos de la recepcion">
-            {data.reception.slides.map((slide, index) => (
-              <img
-                key={slide.alt}
-                className={index === runtime.activeReceptionSlide ? "location-carousel-image location-carousel-image-active" : "location-carousel-image"}
-                src={slide.image}
-                alt={slide.alt}
+            <AnimatePresence mode="sync">
+              <motion.img
+                key={`${runtime.activeReceptionSlide}-${data.reception.slides[runtime.activeReceptionSlide]?.alt ?? "reception"}`}
+                className="location-carousel-image location-carousel-image-active"
+                src={data.reception.slides[runtime.activeReceptionSlide]?.image}
+                alt={data.reception.slides[runtime.activeReceptionSlide]?.alt ?? ""}
+                initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.05 }}
+                animate={prefersReducedMotion ? {} : { opacity: 1, scale: 1 }}
+                exit={prefersReducedMotion ? {} : { opacity: 0, scale: 1.02 }}
+                transition={slideTransition}
               />
-            ))}
+            </AnimatePresence>
           </div>
 
           <div className="location-underlay-photo" aria-hidden="true">
@@ -379,7 +491,7 @@ export function RubyWeddingTemplate({
           </div>
 
           <article className="location-card">
-            <div className="location-card-topbar">{data.reception.title}</div>
+            <motion.div className="location-card-topbar" {...textReveal(0.16, 14)}>{data.reception.title}</motion.div>
             <div className="location-card-body">
               <div className="location-card-icon" aria-hidden="true">
                 <svg viewBox="0 0 64 64">
@@ -391,11 +503,21 @@ export function RubyWeddingTemplate({
                   <path d="M22 18h20" />
                 </svg>
               </div>
-              <p className="location-card-kicker">{data.reception.venueType}</p>
-              <h3>{data.reception.venueName}</h3>
-              <p className="location-card-time">{data.reception.time}</p>
-              <p className="location-card-address">{renderAddress(data.reception.addressLines)}</p>
-              <button className="location-map-button" type="button">Ver mapa</button>
+              <motion.p className="location-card-kicker" {...textReveal(0.26, 16)}>{data.reception.venueType}</motion.p>
+              <motion.h3 {...textReveal(0.34, 18)}>{data.reception.venueName}</motion.h3>
+              <motion.p className="location-card-time" {...textReveal(0.42, 16)}>{data.reception.time}</motion.p>
+              <motion.p className="location-card-address" {...textReveal(0.5, 18)}>
+                {renderAddress(data.reception.addressLines)}
+              </motion.p>
+              <motion.button
+                className="location-map-button"
+                type="button"
+                {...textReveal(0.6, 16)}
+                whileHover={hoverLift}
+                whileTap={tapPress}
+              >
+                Ver mapa
+              </motion.button>
             </div>
           </article>
         </div>
@@ -406,43 +528,64 @@ export function RubyWeddingTemplate({
         style={resolveBackgroundStyle(appearance?.sectionBackgrounds?.padrinos)}
       >
         <div className="padrinos-heading">
-          <h3>{data.padrinos.heading}</h3>
+          <motion.h3 {...textReveal(0.08, 18)}>{data.padrinos.heading}</motion.h3>
         </div>
 
         <div className="padrinos-card">
-          <button
+          <motion.button
             className="padrinos-nav padrinos-nav-prev"
             type="button"
             aria-label="Padrino anterior"
             onClick={() => runtime.setActivePadrinosSlide((current) => (current - 1 + data.padrinos.slides.length) % data.padrinos.slides.length)}
+            whileHover={hoverLift}
+            whileTap={tapPress}
           >
             ‹
-          </button>
+          </motion.button>
 
           <div className="padrinos-slider">
-            {data.padrinos.slides.map((slide, index) => (
-              <img
-                key={slide.alt}
-                className={index === runtime.activePadrinosSlide ? "padrinos-image padrinos-image-active" : "padrinos-image"}
-                src={slide.image}
-                alt={slide.alt}
+            <AnimatePresence mode="sync">
+              <motion.img
+                key={`${runtime.activePadrinosSlide}-${padrinoSlide.alt}`}
+                className="padrinos-image padrinos-image-active"
+                src={padrinoSlide.image}
+                alt={padrinoSlide.alt}
+                initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.04 }}
+                animate={prefersReducedMotion ? {} : { opacity: 1, scale: 1 }}
+                exit={prefersReducedMotion ? {} : { opacity: 0, scale: 1.02 }}
+                transition={slideTransition}
               />
-            ))}
+            </AnimatePresence>
 
-            <div className="padrinos-overlay">
-              <p className="padrinos-role">{padrinoSlide.title}</p>
-              <h4>{padrinoSlide.names}</h4>
-            </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`padrinos-overlay-${runtime.activePadrinosSlide}`}
+                className="padrinos-overlay"
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 18, filter: "blur(8px)" }}
+                animate={prefersReducedMotion ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={prefersReducedMotion ? {} : { opacity: 0, y: 10, filter: "blur(6px)" }}
+                transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
+              >
+                <motion.p className="padrinos-role" {...textReveal(0.12, 14)}>
+                  {padrinoSlide.title}
+                </motion.p>
+                <motion.h4 {...textReveal(0.22, 16)}>
+                  {padrinoSlide.names}
+                </motion.h4>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          <button
+          <motion.button
             className="padrinos-nav padrinos-nav-next"
             type="button"
             aria-label="Siguiente padrino"
             onClick={() => runtime.setActivePadrinosSlide((current) => (current + 1) % data.padrinos.slides.length)}
+            whileHover={hoverLift}
+            whileTap={tapPress}
           >
             ›
-          </button>
+          </motion.button>
         </div>
       </section>
 
@@ -451,36 +594,48 @@ export function RubyWeddingTemplate({
         style={resolveBackgroundStyle(appearance?.sectionBackgrounds?.details)}
       >
         <article className="dresscode-section">
-          <div className="details-heading"><h3>{data.details.dressCode.kicker}</h3></div>
-          <p className="dresscode-label">{data.details.dressCode.title}</p>
+          <div className="details-heading">
+            <motion.h3 {...textReveal(0.08, 18)}>{data.details.dressCode.kicker}</motion.h3>
+          </div>
+          <motion.p className="dresscode-label" {...textReveal(0.2, 18)}>{data.details.dressCode.title}</motion.p>
           <div className="dresscode-illustration">
             <img src={data.details.dressCode.image} alt="Ilustracion de vestimenta formal" />
           </div>
-          <p className="dresscode-note">{data.details.dressCode.note}</p>
+          <motion.p className="dresscode-note" {...textReveal(0.3, 18)}>{data.details.dressCode.note}</motion.p>
         </article>
 
         <article className="gift-section">
-          <div className="details-heading"><h3>{data.details.gifts.kicker}</h3></div>
+          <div className="details-heading">
+            <motion.h3 {...textReveal(0.08, 18)}>{data.details.gifts.kicker}</motion.h3>
+          </div>
           <div className="gift-copy-block">
             {data.details.gifts.giftIllustration ? (
               <div className="gift-copy-illustration" aria-hidden="true">
                 <img src={data.details.gifts.giftIllustration} alt="" />
               </div>
             ) : null}
-            <p>{data.details.gifts.copy}</p>
+            <motion.p {...textReveal(0.2, 18)}>{data.details.gifts.copy}</motion.p>
           </div>
 
           <div className="gift-options-grid">
             <article className="gift-option-card">
               <div className="gift-option-logo"><img src={data.details.gifts.liverpoolLogo} alt="Liverpool" /></div>
-              <h4>Evento</h4>
-              <p>{data.details.gifts.eventCode}</p>
-              <button className="gift-option-button" type="button">Ver regalos</button>
+              <motion.h4 {...textReveal(0.32, 16)}>Evento</motion.h4>
+              <motion.p {...textReveal(0.4, 16)}>{data.details.gifts.eventCode}</motion.p>
+              <motion.button
+                className="gift-option-button"
+                type="button"
+                {...textReveal(0.48, 16)}
+                whileHover={hoverLift}
+                whileTap={tapPress}
+              >
+                Ver regalos
+              </motion.button>
             </article>
 
             <article className="gift-option-card">
               <div className="gift-option-icon"><img src={data.details.gifts.envelopeIcon} alt="Lluvia de sobres" /></div>
-              <h4>Lluvia de Sobres</h4>
+              <motion.h4 {...textReveal(0.38, 16)}>Lluvia de Sobres</motion.h4>
             </article>
           </div>
         </article>
@@ -490,7 +645,7 @@ export function RubyWeddingTemplate({
         className="rsvp-section ruby-surface-section scroll-reveal reveal-soft-rise"
         style={resolveBackgroundStyle(appearance?.sectionBackgrounds?.rsvp)}
       >
-        <div className="rsvp-heading"><h3>{data.rsvp.title}</h3></div>
+        <div className="rsvp-heading"><motion.h3 {...textReveal(0.08, 18)}>{data.rsvp.title}</motion.h3></div>
 
         <div className="rsvp-layout">
           <article className="rsvp-invitation-card">
@@ -499,37 +654,37 @@ export function RubyWeddingTemplate({
             </div>
 
             <div className="rsvp-card-copy">
-              <p className="rsvp-card-label">Invitacion para</p>
-              <h4>Familia</h4>
-              <p className="rsvp-card-family">Montiel Leiva</p>
-              <p className="rsvp-card-count-label">Total de invitados:</p>
+              <motion.p className="rsvp-card-label" {...textReveal(0.16, 16)}>Invitacion para</motion.p>
+              <motion.h4 {...textReveal(0.24, 16)}>Familia</motion.h4>
+              <motion.p className="rsvp-card-family" {...textReveal(0.32, 16)}>Montiel Leiva</motion.p>
+              <motion.p className="rsvp-card-count-label" {...textReveal(0.4, 16)}>Total de invitados:</motion.p>
               <strong>4</strong>
-              <p className="rsvp-card-note">{data.rsvp.guestCount}</p>
+              <motion.p className="rsvp-card-note" {...textReveal(0.46, 16)}>{data.rsvp.guestCount}</motion.p>
             </div>
           </article>
 
           <article className="rsvp-form-panel">
-            <p className="rsvp-intro">
-              Favor de confirmar su presencia, a mas tardar un mes antes del evento.
+            <motion.p className="rsvp-intro" {...textReveal(0.18, 18)}>
+              Favor de confirmar su presencia, a más tardar un mes antes del evento.
               <strong> Muchas gracias.</strong>
-            </p>
-            <p className="rsvp-subcopy">Completa y envia el siguiente formulario.</p>
+            </motion.p>
+            <motion.p className="rsvp-subcopy" {...textReveal(0.28, 18)}>Completa y envia el siguiente formulario.</motion.p>
 
             <form className="rsvp-form">
               <fieldset className="rsvp-fieldset">
-                <legend>Confirmar asistencia:</legend>
+                <motion.legend {...textReveal(0.36, 14)}>Confirmar asistencia:</motion.legend>
                 <label className="rsvp-option"><input type="radio" name="attendance" defaultChecked /><span>Si asistiremos.</span></label>
                 <label className="rsvp-option"><input type="radio" name="attendance" /><span>Lo siento, no podremos asistir.</span></label>
               </fieldset>
 
               <fieldset className="rsvp-fieldset">
-                <legend>Eres familiar o amigo/a de:</legend>
+                <motion.legend {...textReveal(0.42, 14)}>Eres familiar o amigo/a de:</motion.legend>
                 <label className="rsvp-option"><input type="radio" name="side" defaultChecked /><span>Yuliana</span></label>
                 <label className="rsvp-option"><input type="radio" name="side" /><span>Jaime</span></label>
               </fieldset>
 
               <fieldset className="rsvp-fieldset">
-                <legend>Numero de asistentes:</legend>
+                <motion.legend {...textReveal(0.48, 14)}>Numero de asistentes:</motion.legend>
                 <label className="rsvp-option"><input type="radio" name="guests" /><span>4 Adultos</span></label>
                 <label className="rsvp-option"><input type="radio" name="guests" /><span>3 Adultos</span></label>
                 <label className="rsvp-option"><input type="radio" name="guests" defaultChecked /><span>2 Adultos</span></label>
@@ -537,9 +692,19 @@ export function RubyWeddingTemplate({
                 <label className="rsvp-option"><input type="radio" name="guests" /><span>Lo siento, no podremos asistir</span></label>
               </fieldset>
 
-              <label className="rsvp-message-label" htmlFor="rsvp-message">{data.rsvp.dedicationLabel}</label>
+              <motion.label className="rsvp-message-label" htmlFor="rsvp-message" {...textReveal(0.56, 14)}>
+                {data.rsvp.dedicationLabel}
+              </motion.label>
               <textarea id="rsvp-message" className="rsvp-textarea" rows={5} placeholder="Escribe aqui tu mensaje..." />
-              <button className="rsvp-submit" type="submit">Confirmar</button>
+              <motion.button
+                className="rsvp-submit"
+                type="submit"
+                {...textReveal(0.66, 16)}
+                whileHover={hoverLift}
+                whileTap={tapPress}
+              >
+                Confirmar
+              </motion.button>
             </form>
           </article>
         </div>
@@ -550,13 +715,13 @@ export function RubyWeddingTemplate({
         style={resolveBackgroundStyle(appearance?.sectionBackgrounds?.closing)}
       >
         <div className="invitation-closing-topband" aria-hidden="true" />
-        <div className="invitation-closing-message">
-          <p>{data.closing.message}</p>
-          <span>{data.closing.accent}</span>
-        </div>
-        <div className="invitation-closing-footer">
+        <motion.div className="invitation-closing-message" {...textReveal(0.12, 18)}>
+          <motion.p {...textReveal(0.18, 18)}>{data.closing.message}</motion.p>
+          <motion.span {...textReveal(0.32, 16)}>{data.closing.accent}</motion.span>
+        </motion.div>
+        <motion.div className="invitation-closing-footer" {...textReveal(0.42, 16)}>
           <strong>{data.closing.footerText}</strong>
-        </div>
+        </motion.div>
       </footer>
       </div>
     </div>

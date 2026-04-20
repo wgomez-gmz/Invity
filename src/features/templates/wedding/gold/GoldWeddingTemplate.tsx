@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from "motion/react";
 import { Link } from "react-router-dom";
 import type { CategoryEntry, PackageTier } from "@/features/catalog/catalogData";
 import type {
@@ -27,8 +28,24 @@ export function GoldWeddingTemplate({
   data,
   runtime,
 }: GoldWeddingTemplateProps) {
+  const prefersReducedMotion = useReducedMotion();
   const heroSlide = data.hero.slides[runtime.activeWeddingSlide];
   const padrinoSlide = data.padrinos.slides[runtime.activePadrinosSlide];
+  const goldReveal = (delay = 0, y = 22, scale = 0.99) =>
+    prefersReducedMotion
+      ? {}
+      : {
+          initial: { opacity: 0, y, scale, filter: "blur(10px)" },
+          whileInView: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },
+          viewport: { once: true, amount: 0.28 },
+          transition: {
+            duration: 0.9,
+            delay,
+            ease: [0.19, 1, 0.22, 1] as const,
+          },
+        };
+  const hoverLift = prefersReducedMotion ? undefined : { y: -2, scale: 1.02 };
+  const tapPress = prefersReducedMotion ? undefined : { y: 0, scale: 0.985 };
 
   return (
     <div className="template-shell template-gold-story-shell">
@@ -48,21 +65,23 @@ export function GoldWeddingTemplate({
             <span>24 · Octubre · 2026</span>
           </div>
 
-          <article className="gold-stack-card gold-stack-card-main">
+          <motion.article className="gold-stack-card gold-stack-card-main" {...goldReveal(0.12, 18, 0.99)}>
             <img src={heroSlide.image} alt={heroSlide.alt} />
-          </article>
-          <article className="gold-stack-card gold-stack-card-accent">
+          </motion.article>
+          <motion.article className="gold-stack-card gold-stack-card-accent" {...goldReveal(0.24, 22, 0.985)}>
             <img src={data.hero.supportImage} alt="Detalle romantico de la pareja en una toma editorial" />
-          </article>
+          </motion.article>
 
           <div className="gold-slide-indicators" aria-label="Galeria principal">
             {data.hero.slides.map((slide, index) => (
-              <button
+              <motion.button
                 key={slide.alt}
                 type="button"
                 className={index === runtime.activeWeddingSlide ? "gold-indicator gold-indicator-active" : "gold-indicator"}
                 aria-label={`Ir a foto ${index + 1}`}
                 onClick={() => runtime.setActiveWeddingSlide(index)}
+                whileHover={hoverLift}
+                whileTap={tapPress}
               />
             ))}
           </div>
@@ -70,7 +89,7 @@ export function GoldWeddingTemplate({
       </section>
 
       <section className="gold-quote-section scroll-reveal reveal-soft-rise">
-        <div className="gold-quote-shell">
+        <motion.div className="gold-quote-shell" {...goldReveal(0.08, 20, 0.99)}>
           <div className="gold-quote-copy">
             <span className="gold-section-kicker">{data.quote.kicker}</span>
             <blockquote>{data.quote.text}</blockquote>
@@ -80,11 +99,11 @@ export function GoldWeddingTemplate({
           <div className="gold-quote-photo">
             <img src={data.quote.image} alt="Retrato romantico de la pareja abrazandose" />
           </div>
-        </div>
+        </motion.div>
       </section>
 
       <section className="gold-section scroll-reveal reveal-bloom">
-        <article className="gold-info-card">
+        <motion.article className="gold-info-card" {...goldReveal(0.08, 20, 0.99)}>
           <span className="gold-section-kicker">{data.invitation.title}</span>
           <header className="gold-info-header">
             <h2>{data.invitation.names[0]}</h2>
@@ -96,7 +115,7 @@ export function GoldWeddingTemplate({
             <strong>{data.invitation.day}</strong>
             <span>{data.invitation.date}</span>
           </div>
-        </article>
+        </motion.article>
       </section>
 
       <section className="gold-section scroll-reveal reveal-veil">
@@ -105,21 +124,21 @@ export function GoldWeddingTemplate({
         </div>
 
         <div className="gold-parents-grid">
-          <article className="gold-parent-card">
+          <motion.article className="gold-parent-card" {...goldReveal(0.1, 18, 0.99)}>
             <div className="gold-parent-icon" aria-hidden="true">
               <img src={data.parents.bride.icon} alt="" className="gold-parent-icon-image" />
             </div>
             <span className="gold-parent-side">{data.parents.bride.label}</span>
             <p>{renderLines(data.parents.bride.lines)}</p>
-          </article>
+          </motion.article>
 
-          <article className="gold-parent-card">
+          <motion.article className="gold-parent-card" {...goldReveal(0.2, 18, 0.99)}>
             <div className="gold-parent-icon" aria-hidden="true">
               <img src={data.parents.groom.icon} alt="" className="gold-parent-icon-image" />
             </div>
             <span className="gold-parent-side">{data.parents.groom.label}</span>
             <p>{renderLines(data.parents.groom.lines)}</p>
-          </article>
+          </motion.article>
         </div>
       </section>
 
@@ -178,13 +197,15 @@ export function GoldWeddingTemplate({
               ) : null}
             </div>
 
-            <article className="gold-location-card">
+            <motion.article className="gold-location-card" {...goldReveal(0.14, 20, 0.99)}>
               <p className="gold-location-kicker">{section.venueType}</p>
               <h4>{section.venueName}</h4>
               <p className="gold-location-time">{section.time}</p>
               <p className="gold-location-address">{renderLines(section.addressLines)}</p>
-              <button className="gold-map-button" type="button">Ver mapa</button>
-            </article>
+              <motion.button className="gold-map-button" type="button" whileHover={hoverLift} whileTap={tapPress}>
+                Ver mapa
+              </motion.button>
+            </motion.article>
           </div>
         </section>
         );
@@ -197,16 +218,18 @@ export function GoldWeddingTemplate({
         </div>
 
         <div className="gold-padrinos-shell">
-          <button
+          <motion.button
             className="gold-padrinos-nav"
             type="button"
             aria-label="Padrino anterior"
             onClick={() => runtime.setActivePadrinosSlide((current) => (current - 1 + data.padrinos.slides.length) % data.padrinos.slides.length)}
+            whileHover={hoverLift}
+            whileTap={tapPress}
           >
             {"<"}
-          </button>
+          </motion.button>
 
-          <article className="gold-padrinos-card">
+          <motion.article className="gold-padrinos-card" {...goldReveal(0.12, 20, 0.99)}>
             <div className="gold-padrinos-photo">
               {data.padrinos.slides.map((slide, index) => (
                 <img
@@ -222,30 +245,32 @@ export function GoldWeddingTemplate({
               <span>{padrinoSlide.title}</span>
               <h4>{padrinoSlide.names}</h4>
             </div>
-          </article>
+          </motion.article>
 
-          <button
+          <motion.button
             className="gold-padrinos-nav"
             type="button"
             aria-label="Siguiente padrino"
             onClick={() => runtime.setActivePadrinosSlide((current) => (current + 1) % data.padrinos.slides.length)}
+            whileHover={hoverLift}
+            whileTap={tapPress}
           >
             {">"}
-          </button>
+          </motion.button>
         </div>
       </section>
 
       <section className="gold-details-section scroll-reveal reveal-bloom">
-        <article className="gold-detail-card">
+        <motion.article className="gold-detail-card" {...goldReveal(0.08, 18, 0.99)}>
           <span className="gold-section-kicker">{data.details.dressCode.kicker}</span>
           <h3>{data.details.dressCode.title}</h3>
           <div className="gold-detail-illustration">
             <img src={data.details.dressCode.image} alt="Ilustracion de vestimenta formal" />
           </div>
           <p>{data.details.dressCode.note}</p>
-        </article>
+        </motion.article>
 
-        <article className="gold-detail-card">
+        <motion.article className="gold-detail-card" {...goldReveal(0.18, 18, 0.99)}>
           <span className="gold-section-kicker">{data.details.gifts.kicker}</span>
           <h3>{data.details.gifts.title}</h3>
           <p className="gold-gift-copy">{data.details.gifts.copy}</p>
@@ -256,7 +281,9 @@ export function GoldWeddingTemplate({
                 <img src={data.details.gifts.liverpoolLogo} alt="Liverpool" />
               </div>
               <strong>{data.details.gifts.eventCode}</strong>
-              <button className="gold-map-button" type="button">Ver regalos</button>
+              <motion.button className="gold-map-button" type="button" whileHover={hoverLift} whileTap={tapPress}>
+                Ver regalos
+              </motion.button>
             </article>
 
             <article className="gold-gift-option">
@@ -266,7 +293,7 @@ export function GoldWeddingTemplate({
               <strong>Lluvia de Sobres</strong>
             </article>
           </div>
-        </article>
+        </motion.article>
       </section>
 
       <section className="gold-rsvp-section scroll-reveal reveal-soft-rise">
@@ -276,7 +303,7 @@ export function GoldWeddingTemplate({
         </div>
 
         <div className="gold-rsvp-layout">
-          <article className="gold-rsvp-card">
+          <motion.article className="gold-rsvp-card" {...goldReveal(0.1, 18, 0.99)}>
             <div className="gold-rsvp-photo">
               <img src={data.rsvp.photo} alt="Pareja abrazandose frente a una fachada color pastel" />
             </div>
@@ -286,9 +313,9 @@ export function GoldWeddingTemplate({
               <strong>{data.rsvp.familyName}</strong>
               <span>{data.rsvp.guestCount}</span>
             </div>
-          </article>
+          </motion.article>
 
-          <article className="gold-rsvp-form-shell">
+          <motion.article className="gold-rsvp-form-shell" {...goldReveal(0.2, 20, 0.99)}>
             <p className="gold-rsvp-intro">{data.rsvp.intro}</p>
 
             <form className="gold-rsvp-form">
@@ -314,9 +341,11 @@ export function GoldWeddingTemplate({
 
               <label className="gold-rsvp-message-label" htmlFor="rsvp-message-gold">{data.rsvp.dedicationLabel}</label>
               <textarea id="rsvp-message-gold" className="gold-rsvp-textarea" rows={5} placeholder="Escribe aqui tu mensaje..." />
-              <button className="gold-rsvp-submit" type="submit">Confirmar</button>
+              <motion.button className="gold-rsvp-submit" type="submit" whileHover={hoverLift} whileTap={tapPress}>
+                Confirmar
+              </motion.button>
             </form>
-          </article>
+          </motion.article>
         </div>
       </section>
 

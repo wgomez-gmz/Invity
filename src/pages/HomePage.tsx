@@ -1,89 +1,115 @@
-import { Link } from "react-router-dom";
-import logoImage from "@/assets/brand/image.png";
-import { catalogEntries } from "@/features/catalog/catalogData";
+import { motion } from "motion/react";
+import weddingHero from "@/assets/boda/Gold/image 2.png";
+import weddingGallery from "@/assets/boda/Silver/image 3.png";
+import xvGallery from "@/assets/xv/Gold/foto3.png";
+import birthdayGallery from "@/assets/xv/Gold/galeria4.png";
+import babyGallery from "@/assets/xv/Ruby/Galeria/fondo.png";
+import weddingIcon from "@/assets/boda/rubi/image.png";
+import xvIcon from "@/assets/xv/Gold/foto2.png";
+import baptismIcon from "@/assets/xv/Gold/iglesia1.png";
+import eventIcon from "@/assets/boda/Gold/contador.png";
+import { HeroSection } from "@/components/home/HeroSection";
+import { CategoryCard } from "@/components/home/CategoryCard";
+import { BenefitsSection } from "@/components/home/BenefitsSection";
+import { Gallery } from "@/components/home/Gallery";
+import { StepsSection } from "@/components/home/StepsSection";
+import { Testimonials } from "@/components/home/Testimonials";
+import { CTASection } from "@/components/home/CTASection";
+import { HomeFooter } from "@/components/home/HomeFooter";
 
-const highlights = [
-  "Diseno premium con experiencia mobile-first",
-  "Categorias listas para vender y escalar",
-  "Flujo pensado para convertir visitas en consultas",
+const categories = [
+  {
+    title: "Bodas",
+    subtitle: "Diseños romanticos y sofisticados para anunciar un gran si con estilo.",
+    image: weddingIcon,
+    emoji: "💍",
+  },
+  {
+    title: "Cumpleaños",
+    subtitle: "Invitaciones llenas de personalidad para celebrar de forma divertida y elegante.",
+    image: birthdayGallery,
+    emoji: "🎉",
+  },
+  {
+    title: "Bautizos",
+    subtitle: "Propuestas delicadas y memorables para compartir momentos llenos de significado.",
+    image: baptismIcon,
+    emoji: "✨",
+  },
+  {
+    title: "Eventos",
+    subtitle: "Formatos modernos y versatiles para celebraciones especiales con identidad propia.",
+    image: eventIcon,
+    emoji: "🎈",
+  },
+];
+
+const galleryItems = [
+  {
+    image: weddingHero,
+    title: "Boda editorial",
+    heightClass: "h-[24rem]",
+  },
+  {
+    image: xvGallery,
+    title: "XV elegante",
+    heightClass: "h-[18rem]",
+  },
+  {
+    image: weddingGallery,
+    title: "Invitacion romantica",
+    heightClass: "h-[26rem]",
+  },
+  {
+    image: babyGallery,
+    title: "Baby shower premium",
+    heightClass: "h-[17rem]",
+  },
+  {
+    image: xvIcon,
+    title: "Cumpleaños chic",
+    heightClass: "h-[21rem]",
+  },
 ];
 
 export function HomePage() {
   return (
-    <div className="home-page">
-      <section className="hero-section">
-        <div className="hero-copy">
-          <span className="badge">Invitaciones digitales premium</span>
-          <h1>La forma elegante de presentar un evento que merece ser recordado.</h1>
-          <p className="hero-description">
-            Invity convierte cada celebracion en una experiencia visual refinada.
-            Explora categorias disenadas para vender con estilo, claridad y una interaccion natural.
+    <div className="space-y-8 pb-6">
+      <HeroSection mockupImage={weddingHero} />
+
+      <section className="space-y-8">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="max-w-2xl"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#1F7A7A]">
+            Categorias
           </p>
-
-          <div className="hero-actions">
-            <a className="primary-button" href="#categories">
-              Ver categorias
-            </a>
-            <a className="secondary-button" href="#experience">
-              Descubrir experiencia
-            </a>
-          </div>
-
-          <ul className="hero-highlights">
-            {highlights.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="hero-visual panel">
-          <div className="hero-logo-frame">
-            <img className="hero-logo" src={logoImage} alt="Logo de Invity" />
-          </div>
-
-          <div className="hero-floating-card">
-            <p className="floating-label">Coleccion destacada</p>
-            <strong>Momentos que comienzan con una gran primera impresion.</strong>
-            <span>Disenos listos para bodas, XV anos, bautizos y mas.</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="experience-strip" id="experience">
-        <article className="experience-card panel">
-          <span className="section-kicker">Curaduria visual</span>
-          <h2>Una portada hecha para inspirar confianza y deseo de compra.</h2>
-          <p>
-            El home presenta las categorias como productos aspiracionales. El siguiente paso natural
-            sera mostrar paquetes, precios y demos por categoria sin romper la experiencia.
+          <h2 className="mt-3 font-serif text-3xl text-[#1A2A44] md:text-4xl">
+            Colecciones para cada tipo de celebracion
+          </h2>
+          <p className="mt-4 text-base leading-8 text-slate-600">
+            Desde bodas elegantes hasta eventos llenos de color, cada categoria esta pensada para
+            transmitir emocion, estilo y una sensacion premium.
           </p>
-        </article>
-      </section>
+        </motion.div>
 
-      <section className="categories-section" id="categories">
-        <div className="section-heading">
-          <span className="section-kicker">Categorias</span>
-          <h2>Encuentra el estilo ideal para cada celebracion.</h2>
-          <p>
-            Selecciona una categoria y continua con una coleccion de invitaciones pensada para ese momento especial.
-          </p>
-        </div>
-
-        <div className="categories-grid">
-          {catalogEntries.map((category) => (
-            <article className={`category-card ${category.accent}`} key={category.slug}>
-              <div className="category-pattern" aria-hidden="true" />
-              <div className="category-icon-wrap">
-                <img className="category-icon-image" src={category.icon} alt="" />
-              </div>
-              <h3>{category.shortName}</h3>
-              <Link className="card-link" to={`/categoria/${category.slug}`}>
-                Ver invitaciones
-              </Link>
-            </article>
+        <div className="grid gap-5 md:grid-cols-2">
+          {categories.map((category) => (
+            <CategoryCard key={category.title} {...category} />
           ))}
         </div>
       </section>
+
+      <BenefitsSection />
+      <Gallery items={galleryItems} />
+      <StepsSection />
+      <Testimonials />
+      <CTASection />
+      <HomeFooter />
     </div>
   );
 }
