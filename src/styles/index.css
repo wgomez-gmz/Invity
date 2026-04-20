@@ -1002,6 +1002,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 28px;
+  min-height: 100dvh;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -1028,7 +1029,7 @@ button {
   position: relative;
   z-index: 1;
   width: min(100%, 540px);
-  max-height: calc(100svh - 56px);
+  max-height: calc(100dvh - 56px);
   box-sizing: border-box;
   margin: auto;
   display: grid;
@@ -6673,7 +6674,7 @@ button {
 
   .ruby-entry-modal-card {
     width: min(100%, 460px);
-    max-height: calc(100svh - 40px);
+    max-height: calc(100dvh - 40px);
     padding: 28px 22px 24px;
     border-radius: 24px;
   }
@@ -6896,17 +6897,19 @@ button {
 
   .ruby-entry-modal {
     width: 100vw;
-    padding: 18px 12px 24px;
-    align-items: flex-end;
+    min-height: 100dvh;
+    padding: 12px;
+    align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
 
   .ruby-entry-modal-card {
     width: 100%;
     max-width: 372px;
     gap: 14px;
-    max-height: calc(100svh - 32px);
-    padding: 28px 20px 22px;
+    max-height: calc(100dvh - 24px);
+    padding: 24px 18px 20px;
     border-radius: 28px;
     margin: 0 auto;
     left: auto;
