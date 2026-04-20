@@ -16,65 +16,71 @@ export const xvPremiumTemplateData: XvPremiumTemplateData = {
   key: "premium",
   appearance: {
     palette: {
-      gold: "#d8b15e",
-      goldSoft: "#f0d69c",
-      blush: "#f3d7df",
-      blushSoft: "#fff4f7",
-      ivory: "#fffaf7",
-      black: "#2a1c25",
-      ink: "#3a2b33",
+      gold: "#d6b15b",
+      goldSoft: "#f3dfaa",
+      blush: "#f5cddd",
+      blushSoft: "#fff4f8",
+      ivory: "#fffaf8",
+      black: "#2f1630",
+      ink: "#4c2d46",
     },
-    accentPrimary: "#9d248d",
+    accentPrimary: "#d45f9a",
     shellBackgroundImage,
     ornamentImageLeft: undefined,
     ornamentImageRight: undefined,
     heroOverlay:
-      "linear-gradient(180deg, rgba(27, 19, 24, 0.18) 0%, rgba(27, 19, 24, 0.76) 100%)",
+      "linear-gradient(180deg, rgba(212, 95, 154, 0.08) 0%, rgba(76, 28, 62, 0.36) 100%)",
     sectionBackground:
-      "linear-gradient(180deg, rgba(255, 250, 247, 0.98) 0%, rgba(255, 244, 247, 0.98) 100%)",
+      "linear-gradient(180deg, rgba(255, 248, 252, 0.98) 0%, rgba(255, 243, 248, 0.98) 100%)",
     sectionBackgroundAlt:
-      "linear-gradient(180deg, rgba(255, 245, 248, 0.99) 0%, rgba(255, 250, 247, 0.98) 100%)",
-    cardBackground: "rgba(255, 255, 255, 0.78)",
-    borderColor: "rgba(216, 177, 94, 0.22)",
+      "linear-gradient(180deg, rgba(255, 241, 248, 0.99) 0%, rgba(255, 249, 252, 0.98) 100%)",
+    cardBackground: "rgba(255, 255, 255, 0.82)",
+    borderColor: "rgba(216, 177, 94, 0.28)",
   },
   hero: {
     celebrant: "Regina",
-    subtitle: "Mis XV Años",
+    subtitle: "Mis XV A\u00f1os",
     date: "14 de Noviembre de 2026",
     coverImage: {
       src: heroImage,
-      alt: "Retrato editorial de quinceañera con vestido brillante",
+      alt: "Retrato editorial de quincea\u00f1era con vestido brillante",
       position: "center top",
     },
     supportLine:
-      "Una noche dorada, delicada y luminosa para celebrar una etapa que quedará en el corazón para siempre.",
-    openLabel: "Abrir invitación",
+      "Una celebraci\u00f3n concebida como una noche de revista: luz suave, destellos dorados y recuerdos que permanecer\u00e1n para siempre.",
+    openLabel: "Abrir invitaci\u00f3n",
   },
   countdown: {
     targetIso: "2026-11-14T20:00:00-06:00",
     title: "Cuenta regresiva",
-    note: "Cada instante nos acerca a una noche llena de magia, vals y recuerdos inolvidables.",
+    headline: "La noche que imagin\u00e9 est\u00e1 cada vez m\u00e1s cerca",
+    labels: {
+      days: "D\u00edas",
+      hours: "Horas",
+      minutes: "Minutos",
+    },
+    note: "Cada instante nos acerca a una velada hecha de luz, elegancia y momentos dignos de permanecer en la memoria.",
   },
   message: {
     kicker: "Dedicatoria",
-    title: "Con amor para una noche inolvidable",
+    title: "Una noche so\u00f1ada, compartida con quienes m\u00e1s quiero",
     body:
-      "Hoy celebramos con inmensa alegría el inicio de una nueva etapa. Gracias por acompañarnos en este sueño vestido de luz, elegancia y amor.",
-    signature: "Con cariño, su familia",
+      "Hoy comienza una etapa nueva, luminosa y profundamente especial. Gracias por acompa\u00f1arme en una celebraci\u00f3n pensada para atesorar belleza, emoci\u00f3n y recuerdos inolvidables.",
+    signature: "Con cari\u00f1o, Regina y mi familia",
   },
   gallery: {
-    kicker: "Galería",
-    title: "Brillos, detalles y momentos que ya se sienten eternos",
-    note: "Desliza para descubrir cada escena de esta historia.",
+    kicker: "Galer\u00eda",
+    title: "Escenas, destellos y detalles de una noche que ya se siente eterna",
+    note: "Recorre cada imagen como si hojeases una edici\u00f3n especial de esta celebraci\u00f3n.",
     images: [
       {
         src: heroSupportImage,
-        alt: "Sesión editorial de quince años",
+        alt: "Sesi\u00f3n editorial de quince a\u00f1os",
         position: "center center",
       },
       {
         src: heroImage,
-        alt: "Retrato principal de la quinceañera",
+        alt: "Retrato principal de la quincea\u00f1era",
         position: "center top",
       },
       {
@@ -84,12 +90,12 @@ export const xvPremiumTemplateData: XvPremiumTemplateData = {
       },
       {
         src: galleryImageFive,
-        alt: "Retrato final de la colección",
+        alt: "Retrato final de la colecci\u00f3n",
         position: "center center",
       },
       {
         src: galleryImageOne,
-        alt: "Detalle elegante de la sesión de fotos",
+        alt: "Detalle elegante de la sesi\u00f3n fotogr\u00e1fica",
         position: "center center",
       },
       {
@@ -99,43 +105,43 @@ export const xvPremiumTemplateData: XvPremiumTemplateData = {
       },
       {
         src: galleryImageThree,
-        alt: "Momento delicado de la celebración",
+        alt: "Momento delicado de la celebraci\u00f3n",
         position: "center center",
       },
     ],
   },
   eventDetails: {
     kicker: "Detalles del evento",
-    title: "Acompáñame en una noche llena de brillo y emoción",
+    title: "Cada momento fue pensado para vivirse con emoci\u00f3n, elegancia y presencia",
     cards: [
       {
         icon: "church",
         title: "Ceremonia religiosa",
-        venue: "Parroquia San Miguel Arcángel",
+        venue: "Parroquia San Miguel Arc\u00e1ngel",
         address: "Av. Rosales 245, Col. Del Valle, Monterrey, N.L.",
         time: "6:00 PM",
       },
       {
         icon: "party",
-        title: "Recepción",
-        venue: "Salón Aurora",
-        address: "Camino de las Flores 128, San Pedro Garza García, N.L.",
+        title: "Recepci\u00f3n",
+        venue: "Sal\u00f3n Aurora",
+        address: "Camino de las Flores 128, San Pedro Garza Garc\u00eda, N.L.",
         time: "8:00 PM",
       },
       {
         icon: "clock",
         title: "Momentos especiales",
-        venue: "Vals, brindis y celebración durante toda la velada",
-        address: "Recepción de invitados a partir de las 5:30 PM.",
+        venue: "Vals, brindis y celebraci\u00f3n durante toda la velada",
+        address: "Recepci\u00f3n de invitados a partir de las 5:30 PM.",
         time: "Puntualidad sugerida",
       },
     ],
   },
   map: {
-    kicker: "Ubicación",
-    title: "Cómo llegar",
-    venue: "Salón Aurora",
-    address: "Camino de las Flores 128, San Pedro Garza García, N.L.",
+    kicker: "Ubicaci\u00f3n",
+    title: "El camino hacia una noche inolvidable",
+    venue: "Sal\u00f3n Aurora",
+    address: "Camino de las Flores 128, San Pedro Garza Garc\u00eda, N.L.",
     embedUrl:
       "https://www.google.com/maps?q=San+Pedro+Garza+Garcia+Nuevo+Leon&z=14&output=embed",
     mapsUrl:
@@ -143,7 +149,7 @@ export const xvPremiumTemplateData: XvPremiumTemplateData = {
   },
   dressCode: {
     kicker: "Dress Code",
-    title: "Código de vestimenta",
+    title: "C\u00f3digo de vestimenta",
     cards: [
       {
         label: "Etiqueta",
@@ -154,23 +160,23 @@ export const xvPremiumTemplateData: XvPremiumTemplateData = {
         },
       },
     ],
-    note: "Queremos una atmósfera armoniosa, refinada y muy especial para esta noche.",
+    note: "Nos encantar\u00e1 compartir esta noche en una atm\u00f3sfera armoniosa, refinada y visualmente memorable.",
   },
   music: {
-    label: "Música",
+    label: "M\u00fasica",
   },
   gifts: {
     kicker: "Mesa de regalos",
-    title: "Gracias por compartir conmigo este momento",
+    title: "Gracias por acompa\u00f1ar este recuerdo tan especial",
     intro:
-      "Tu presencia es lo más importante. Si deseas tener un detalle conmigo, aquí encontrarás algunas opciones.",
+      "Tu presencia es el regalo m\u00e1s importante. Si deseas acompa\u00f1arme con un detalle, aqu\u00ed encontrar\u00e1s opciones elegantes y sencillas.",
     options: [
       {
         title: "Transferencia",
         value: "BBVA - 012345678901234567",
         image: {
           src: giftBoxImage,
-          alt: "Ícono de regalo para opción de transferencia",
+          alt: "Icono de regalo para opci\u00f3n de transferencia",
         },
       },
       {
@@ -185,10 +191,10 @@ export const xvPremiumTemplateData: XvPremiumTemplateData = {
       },
       {
         title: "Lluvia de sobres",
-        value: "Si lo prefieres, podrás entregarlo el día del evento",
+        value: "Si lo prefieres, podr\u00e1s entregarlo el d\u00eda del evento",
         image: {
           src: envelopeImage,
-          alt: "Ícono de sobre para lluvia de sobres",
+          alt: "Icono de sobre para lluvia de sobres",
         },
       },
     ],
@@ -197,49 +203,48 @@ export const xvPremiumTemplateData: XvPremiumTemplateData = {
     kicker: "RSVP",
     title: "Confirma tu asistencia",
     intro:
-      "Tu compañía hará esta noche aún más especial. Por favor confirma con anticipación para celebrarlo juntos.",
-    formIntro: "Completa y envía el siguiente formulario.",
-    familyFieldLabel: "Escribe nombre o apellidos de tu familia:",
-    familyFieldPlaceholder: "Familia Hernández López",
-    relationLabel: "Eres mi:",
+      "Tu presencia dar\u00e1 sentido a esta noche. Confirma con anticipaci\u00f3n para prepararlo todo con el cuidado que merece esta celebraci\u00f3n.",
+    formIntro:
+      "Comp\u00e1rtenos tu confirmaci\u00f3n y ay\u00fadanos a preparar cada detalle con el cuidado que esta fecha merece.",
+    familyFieldLabel: "Escribe el nombre o apellido de tu familia:",
+    familyFieldPlaceholder: "Familia Hernandez Lopez",
+    relationLabel: "Tu relaci\u00f3n conmigo:",
     relationOptions: ["Familiar", "Amigo/a"],
-    attendanceLabel: "Confirmar asistencia:",
-    attendanceNameLabel: "Escribe el nombre de quien asistirá (4 Adultos):",
-    attendanceNamePlaceholder: "Escribe aquí los nombres de quienes asistirán.",
+    attendanceLabel: "Confirma tu asistencia:",
+    attendanceNameLabel: "Escribe el nombre de quienes asistir\u00e1n (3 adultos):",
+    attendanceNamePlaceholder: "Escribe aqu\u00ed los nombres de quienes asistir\u00e1n.",
     guestFieldLabel: "Nombre",
     guestFieldPlaceholder: "Escribe el nombre del invitado.",
     guestFieldHelp: "Escribe el nombre del invitado.",
     guestSlots: 1,
     attendanceOptions: [
-      "4 Adultos",
       "3 Adultos",
       "2 Adultos",
       "1 Adulto",
       "Lo siento, no podremos asistir",
     ],
-    dedicationLabel: "Escribe una dedicatoria para Regina:",
-    dedicationPlaceholder: "Déjale unas palabras bonitas a Regina.",
+    dedicationLabel: "Dedica unas palabras para Regina:",
+    dedicationPlaceholder: "Escribe un mensaje bonito para una noche tan especial.",
     passTitle: "Pase especial",
-    passGuestName: "Familia Hernández López",
+    passGuestName: "Familia Hernandez Lopez",
     passGuestCountLabel: "Personas",
     passGuestCountValue: "3",
-    passMessage:
-      "Pase único e intransferible",
-    passGuests: ["Maribel Hernández", "José López", "Ximena López"],
+    passMessage: "Pase \u00fanico e intransferible",
+    passGuests: ["Maribel Hernandez", "Jose Lopez", "Ximena Lopez"],
     passImage: {
       src: heroSupportImage,
-      alt: "Imagen principal del pase de XV años",
+      alt: "Imagen principal del pase de XV a\u00f1os",
       position: "center top",
     },
-    buttonLabel: "Enviar confirmación",
+    buttonLabel: "Enviar confirmaci\u00f3n",
     successMessage:
-      "Confirmación enviada. Gracias por ser parte de esta noche tan importante.",
+      "Confirmaci\u00f3n enviada. Gracias por formar parte de una noche tan especial.",
     whatsappUrl:
       "https://wa.me/528100000000?text=Hola%2C%20quiero%20confirmar%20mi%20asistencia%20a%20los%20XV.",
     whatsappLabel: "Confirmar por WhatsApp",
   },
   closing: {
-    message: "Gracias por ser parte de una noche que brillará para siempre en mi memoria.",
-    accent: "Te espero con mucha ilusión",
+    message: "Gracias por acompa\u00f1ar una noche pensada para quedarse siempre en la memoria.",
+    accent: "Te espero para celebrar esta historia conmigo",
   },
 };

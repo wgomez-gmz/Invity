@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, lazy, useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowLeft, Check, Eye, Gem, Sparkles } from "lucide-react";
@@ -9,15 +9,32 @@ import {
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { GoldWeddingTemplate } from "@/features/templates/wedding/gold/GoldWeddingTemplate";
 import { goldWeddingTemplateData } from "@/features/templates/wedding/gold/templateData";
-import { RubyWeddingTemplate } from "@/features/templates/wedding/ruby/RubyWeddingTemplate";
 import { rubyWeddingTemplateData } from "@/features/templates/wedding/ruby/templateData";
-import { SilverWeddingTemplate } from "@/features/templates/wedding/silver/SilverWeddingTemplate";
 import { silverWeddingTemplateData } from "@/features/templates/wedding/silver/templateData";
 import { xvGoldTemplateData } from "@/features/templates/xv/gold/templateData";
-import { XvPremiumTemplate } from "@/features/templates/xv/premium/XvPremiumTemplate";
 import { xvPremiumTemplateData } from "@/features/templates/xv/premium/templateData";
+
+const RubyWeddingTemplate = lazy(() =>
+  import("@/features/templates/wedding/ruby/RubyWeddingTemplate").then((module) => ({
+    default: module.RubyWeddingTemplate,
+  })),
+);
+const GoldWeddingTemplate = lazy(() =>
+  import("@/features/templates/wedding/gold/GoldWeddingTemplate").then((module) => ({
+    default: module.GoldWeddingTemplate,
+  })),
+);
+const SilverWeddingTemplate = lazy(() =>
+  import("@/features/templates/wedding/silver/SilverWeddingTemplate").then((module) => ({
+    default: module.SilverWeddingTemplate,
+  })),
+);
+const XvPremiumTemplate = lazy(() =>
+  import("@/features/templates/xv/premium/XvPremiumTemplate").then((module) => ({
+    default: module.XvPremiumTemplate,
+  })),
+);
 
 const templateCopy = {
   ruby: {
@@ -36,6 +53,23 @@ const templateCopy = {
     lead: "Perfecta para eventos que prefieren una presencia sutil, actual y de gran buen gusto.",
   },
 } as const;
+
+function TemplateLoadingState() {
+  return (
+    <section className="grid min-h-[60vh] place-items-center px-4 py-12">
+      <Card className="w-full max-w-xl rounded-[2rem] border-white/70 bg-white/90 shadow-xl shadow-slate-950/5">
+        <CardContent className="p-8 text-center">
+          <span className="inline-flex rounded-full border border-[#1F7A7A]/10 bg-[#1F7A7A]/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#1F7A7A]">
+            Cargando experiencia
+          </span>
+          <p className="mt-5 text-sm leading-7 text-slate-600">
+            Preparando la plantilla y sus recursos visuales.
+          </p>
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
 
 export function TemplateDemoPage() {
   const { slug, tier } = useParams();
@@ -241,11 +275,13 @@ export function TemplateDemoPage() {
     const xvTemplateData = pkg.accent === "gold" ? xvGoldTemplateData : xvPremiumTemplateData;
 
     return (
-      <XvPremiumTemplate
-        category={category}
-        pkg={pkg}
-        data={xvTemplateData}
-      />
+      <Suspense fallback={<TemplateLoadingState />}>
+        <XvPremiumTemplate
+          category={category}
+          pkg={pkg}
+          data={xvTemplateData}
+        />
+      </Suspense>
     );
   }
 
@@ -261,33 +297,39 @@ export function TemplateDemoPage() {
 
     if (weddingTemplateData.key === "ruby") {
       return (
-        <RubyWeddingTemplate
-          category={category}
-          pkg={pkg}
-          data={weddingTemplateData}
-          runtime={runtime}
-        />
+        <Suspense fallback={<TemplateLoadingState />}>
+          <RubyWeddingTemplate
+            category={category}
+            pkg={pkg}
+            data={weddingTemplateData}
+            runtime={runtime}
+          />
+        </Suspense>
       );
     }
 
     if (weddingTemplateData.key === "silver") {
       return (
-        <SilverWeddingTemplate
+        <Suspense fallback={<TemplateLoadingState />}>
+          <SilverWeddingTemplate
+            category={category}
+            pkg={pkg}
+            data={weddingTemplateData}
+            runtime={runtime}
+          />
+        </Suspense>
+      );
+    }
+
+    return (
+      <Suspense fallback={<TemplateLoadingState />}>
+        <GoldWeddingTemplate
           category={category}
           pkg={pkg}
           data={weddingTemplateData}
           runtime={runtime}
         />
-      );
-    }
-
-    return (
-      <GoldWeddingTemplate
-        category={category}
-        pkg={pkg}
-        data={weddingTemplateData}
-        runtime={runtime}
-      />
+      </Suspense>
     );
   }
 

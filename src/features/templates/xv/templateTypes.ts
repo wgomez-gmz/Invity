@@ -64,6 +64,12 @@ export type XvPremiumTemplateData = {
   countdown: {
     targetIso: string;
     title: string;
+    headline?: string;
+    labels?: {
+      days: string;
+      hours: string;
+      minutes: string;
+    };
     note: string;
   };
   message: {
