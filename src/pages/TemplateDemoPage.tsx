@@ -14,6 +14,7 @@ import { rubyWeddingTemplateData } from "@/features/templates/wedding/ruby/templ
 import { silverWeddingTemplateData } from "@/features/templates/wedding/silver/templateData";
 import { xvGoldTemplateData } from "@/features/templates/xv/gold/templateData";
 import { xvPremiumTemplateData } from "@/features/templates/xv/premium/templateData";
+import { xvSilverTemplateData } from "@/features/templates/xv/silver/templateData";
 
 const RubyWeddingTemplate = lazy(() =>
   import("@/features/templates/wedding/ruby/RubyWeddingTemplate").then((module) => ({
@@ -33,6 +34,16 @@ const SilverWeddingTemplate = lazy(() =>
 const XvPremiumTemplate = lazy(() =>
   import("@/features/templates/xv/premium/XvPremiumTemplate").then((module) => ({
     default: module.XvPremiumTemplate,
+  })),
+);
+const XvGoldTemplate = lazy(() =>
+  import("@/features/templates/xv/gold/XvGoldTemplate").then((module) => ({
+    default: module.XvGoldTemplate,
+  })),
+);
+const XvSilverTemplate = lazy(() =>
+  import("@/features/templates/xv/silver/XvSilverTemplate").then((module) => ({
+    default: module.XvSilverTemplate,
   })),
 );
 
@@ -272,14 +283,36 @@ export function TemplateDemoPage() {
   }
 
   if (category.slug === "xv-anos") {
-    const xvTemplateData = pkg.accent === "gold" ? xvGoldTemplateData : xvPremiumTemplateData;
+    if (pkg.accent === "silver") {
+      return (
+        <Suspense fallback={<TemplateLoadingState />}>
+          <XvSilverTemplate
+            category={category}
+            pkg={pkg}
+            data={xvSilverTemplateData}
+          />
+        </Suspense>
+      );
+    }
+
+    if (pkg.accent === "gold") {
+      return (
+        <Suspense fallback={<TemplateLoadingState />}>
+          <XvGoldTemplate
+            category={category}
+            pkg={pkg}
+            data={xvGoldTemplateData}
+          />
+        </Suspense>
+      );
+    }
 
     return (
       <Suspense fallback={<TemplateLoadingState />}>
         <XvPremiumTemplate
           category={category}
           pkg={pkg}
-          data={xvTemplateData}
+          data={xvPremiumTemplateData}
         />
       </Suspense>
     );

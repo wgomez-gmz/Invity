@@ -19,13 +19,13 @@ export function CTASection() {
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white/80 backdrop-blur">
             <Sparkles className="h-4 w-4 text-[#D4AF37]" />
-            Haz especial cada invitacion
+            Haz especial cada invitación
           </div>
           <h2 className="mt-5 max-w-[14ch] font-serif text-4xl leading-tight md:text-5xl">
-            Haz especial cada invitacion
+            Haz especial cada invitación
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-8 text-white/75">
-            Convierte tu celebracion en una experiencia digital elegante, divertida y memorable
+            Convierte tu celebración en una experiencia digital elegante, divertida y memorable
             desde el primer mensaje.
           </p>
         </div>

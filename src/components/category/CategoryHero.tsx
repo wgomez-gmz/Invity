@@ -1,8 +1,15 @@
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight, Gem, Sparkles } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+type PreviewSlide = {
+  name: string;
+  image: string;
+  previewHref: string;
+};
 
 type CategoryHeroProps = {
   badge: string;
@@ -12,6 +19,7 @@ type CategoryHeroProps = {
   icon: string;
   previewImage: string;
   previewHref: string;
+  previewSlides?: PreviewSlide[];
 };
 
 const particles = [
@@ -29,7 +37,35 @@ export function CategoryHero({
   icon,
   previewImage,
   previewHref,
+  previewSlides,
 }: CategoryHeroProps) {
+  const slides = useMemo(
+    () =>
+      previewSlides && previewSlides.length > 0
+        ? previewSlides
+        : [{ name: categoryName, image: previewImage, previewHref }],
+    [categoryName, previewHref, previewImage, previewSlides],
+  );
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    setActiveSlide(0);
+  }, [slides.length]);
+
+  useEffect(() => {
+    if (slides.length <= 1) {
+      return undefined;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % slides.length);
+    }, 3400);
+
+    return () => window.clearInterval(intervalId);
+  }, [slides.length]);
+
+  const activePreview = slides[activeSlide] ?? slides[0];
+
   return (
     <section className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.96),rgba(242,247,246,0.94)_55%,rgba(230,239,237,0.96))] px-6 py-8 shadow-xl shadow-slate-950/5 md:px-10 md:py-12">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,175,55,0.18),transparent_30%),radial-gradient(circle_at_78%_18%,rgba(31,122,122,0.16),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(26,42,68,0.08),transparent_26%)]" />
@@ -108,7 +144,7 @@ export function CategoryHero({
               <ArrowRight className="h-4 w-4" />
             </a>
             <Link
-              to={previewHref}
+              to={activePreview.previewHref}
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
                 "h-12 rounded-2xl border-white/80 bg-white/75 px-6 text-[#1A2A44] shadow-lg shadow-slate-950/5 transition-transform hover:scale-[1.02] hover:bg-white",
@@ -156,14 +192,39 @@ export function CategoryHero({
               </div>
 
               <div className="rounded-[1.5rem] bg-[linear-gradient(180deg,#f9fbfb,#eef3f2)] p-4">
-                <div className="relative overflow-hidden rounded-[1.35rem] border border-white/80 bg-white shadow-lg shadow-slate-950/5">
-                  <div className="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.22),transparent_70%)]" />
-                  <img
-                    src={previewImage}
-                    alt={`Vista previa ${categoryName}`}
-                    className="h-[23rem] w-full object-cover"
+                <div className="relative h-[23rem] cursor-pointer overflow-hidden rounded-[1.35rem] border border-white/80 bg-white shadow-lg shadow-slate-950/5">
+                  <Link
+                    to={activePreview.previewHref}
+                    aria-label={`Abrir paquete ${activePreview.name}`}
+                    className="absolute inset-0 z-[1]"
                   />
-                  <div className="absolute inset-x-5 bottom-5 rounded-[1.25rem] border border-white/70 bg-white/86 px-4 py-3 shadow-lg shadow-slate-950/10 backdrop-blur">
+                  <div className="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.22),transparent_70%)]" />
+                  {slides.map((slide, index) => (
+                    <motion.img
+                      key={`${slide.name}-${slide.image}`}
+                      src={slide.image}
+                      alt={`Vista previa ${slide.name}`}
+                      className="absolute inset-0 h-[23rem] w-full object-cover"
+                      initial={{ opacity: index === 0 ? 1 : 0 }}
+                      animate={{ opacity: index === activeSlide ? 1 : 0 }}
+                      transition={{ duration: 0.55, ease: "easeInOut" }}
+                    />
+                  ))}
+                  <div className="absolute right-5 top-5 z-20 flex items-center gap-1.5 rounded-full border border-white/80 bg-white/85 px-2 py-1 backdrop-blur">
+                    {slides.map((slide, index) => (
+                      <button
+                        key={`dot-${slide.name}`}
+                        type="button"
+                        onClick={() => setActiveSlide(index)}
+                        aria-label={`Ver preview ${slide.name}`}
+                        className={cn(
+                          "h-2.5 rounded-full transition-all",
+                          index === activeSlide ? "w-7 bg-[#1F7A7A]" : "w-2.5 bg-slate-300 hover:bg-slate-400",
+                        )}
+                      />
+                    ))}
+                  </div>
+                  <div className="pointer-events-none absolute inset-x-5 bottom-5 z-10 rounded-[1.25rem] border border-white/70 bg-white/86 px-4 py-3 shadow-lg shadow-slate-950/10 backdrop-blur">
                     <div className="flex items-center gap-3">
                       <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#f5f8f8]">
                         <img src={icon} alt="" className="h-7 w-7 object-contain" />
@@ -175,6 +236,11 @@ export function CategoryHero({
                         <p className="mt-1 font-serif text-2xl text-[#1A2A44]">
                           {categoryName}
                         </p>
+                        {slides.length > 1 ? (
+                          <p className="mt-1 text-xs uppercase tracking-[0.18em] text-slate-500">
+                            Paquete {activePreview.name}
+                          </p>
+                        ) : null}
                       </div>
                     </div>
                   </div>

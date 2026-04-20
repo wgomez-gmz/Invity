@@ -37,7 +37,7 @@ export type XvDressCard = {
 };
 
 export type XvPremiumTemplateData = {
-  key: "premium" | "gold";
+  key: "premium" | "gold" | "silver";
   appearance: {
     palette: XvPalette;
     accentPrimary: string;

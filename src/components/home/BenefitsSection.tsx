@@ -6,11 +6,11 @@ const benefits = [
   {
     icon: Wand2,
     title: "Entrega inmediata",
-    description: "Recibe tu invitacion digital lista para compartirse con una presencia impecable.",
+    description: "Recibe tu invitación digital lista para compartirse con una presencia impecable.",
   },
   {
     icon: Palette,
-    title: "Personalizacion facil",
+    title: "Personalización fácil",
     description: "Ajusta textos, colores y detalles del evento para reflejar tu estilo con elegancia.",
   },
   {
@@ -21,7 +21,7 @@ const benefits = [
   {
     icon: MessageSquareShare,
     title: "Compartir por WhatsApp",
-    description: "Comparte tu invitacion en segundos con una experiencia optimizada para movil.",
+    description: "Comparte tu invitación en segundos con una experiencia optimizada para móvil.",
   },
 ];
 

@@ -7,13 +7,13 @@ const testimonials = [
     name: "Daniela R.",
     role: "Boda civil",
     comment:
-      "La invitacion se sintio elegante desde el primer vistazo. Nuestros invitados quedaron fascinados con el diseño y la animacion.",
+      "La invitación se sintió elegante desde el primer vistazo. Nuestros invitados quedaron fascinados con el diseño y la animación.",
   },
   {
     name: "Mariana G.",
     role: "XV años",
     comment:
-      "Buscaba algo moderno, fino y diferente. Invity logro exactamente esa mezcla entre celebracion, estilo y facilidad para compartir.",
+      "Buscaba algo moderno, fino y diferente. Invity logró exactamente esa mezcla entre celebración, estilo y facilidad para compartir.",
   },
   {
     name: "Sofia y Arturo",
@@ -31,7 +31,7 @@ export function Testimonials() {
           Testimonios
         </p>
         <h2 className="mt-3 font-serif text-3xl text-[#1A2A44] md:text-4xl">
-          Lo que se siente cuando una invitacion esta hecha con detalle
+          Lo que se siente cuando una invitación está hecha con detalle
         </h2>
       </div>
 

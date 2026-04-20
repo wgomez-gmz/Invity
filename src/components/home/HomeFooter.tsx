@@ -1,6 +1,6 @@
 import { Camera, MessagesSquare, Send } from "lucide-react";
 
-const links = ["Disenos", "Categorias", "Testimonios", "Contacto"];
+const links = ["Diseños", "Categorías", "Testimonios", "Contacto"];
 
 export function HomeFooter() {
   return (

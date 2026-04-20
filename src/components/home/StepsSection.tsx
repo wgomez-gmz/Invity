@@ -15,7 +15,7 @@ const steps = [
   {
     icon: Send,
     title: "Comparte",
-    description: "Enviala por WhatsApp y sorprende a tus invitados con una experiencia memorable.",
+    description: "Envíala por WhatsApp y sorprende a tus invitados con una experiencia memorable.",
   },
 ];
 
@@ -24,7 +24,7 @@ export function StepsSection() {
     <section className="rounded-[2rem] border border-white/60 bg-white/80 p-6 shadow-xl shadow-slate-950/5 md:p-10">
       <div className="max-w-2xl">
         <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#1F7A7A]">
-          Como funciona
+          Cómo funciona
         </p>
         <h2 className="mt-3 font-serif text-3xl text-[#1A2A44] md:text-4xl">
           Una experiencia simple para crear invitaciones con acabado premium

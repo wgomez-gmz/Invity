@@ -16,8 +16,9 @@ import brandPreviewImage from "@/assets/brand/image.png";
 import weddingGoldPreviewImage from "@/assets/boda/Gold/image.png";
 import weddingRubyPreviewImage from "@/assets/boda/rubi/image.png";
 import weddingSilverPreviewImage from "@/assets/boda/Silver/image.png";
-import xvGoldPreviewImage from "@/assets/xv/Gold/bella1.png";
+import xvGoldPreviewImage from "@/assets/xv/Gold/foto.png";
 import xvRubyPreviewImage from "@/assets/xv/Ruby/Galeria/xv.png";
+import xvSilverPreviewImage from "@/assets/xv/silver/foto1.png";
 
 export function CategoryPage() {
   const { slug } = useParams();
@@ -67,7 +68,7 @@ export function CategoryPage() {
       badge: "Disenos premium",
     },
     "xv-anos": {
-      title: "Invitaciones de XV Anos con presencia, brillo y personalidad",
+      title: "Invitaciones de XV Años con presencia, brillo y personalidad",
       subtitle:
         "Colecciones modernas y memorables para anunciar una celebracion unica con detalles delicados, movimiento y mucha presencia visual.",
       badge: "Experiencia premium",
@@ -102,6 +103,7 @@ export function CategoryPage() {
     if (category.slug === "xv-anos") {
       if (accent === "ruby") return xvRubyPreviewImage;
       if (accent === "gold") return xvGoldPreviewImage;
+      if (accent === "silver") return xvSilverPreviewImage;
     }
 
     return brandPreviewImage;
@@ -146,6 +148,11 @@ export function CategoryPage() {
         icon={category.icon}
         previewImage={getPreviewImage("gold")}
         previewHref={featuredPreview}
+        previewSlides={displayedPackages.map((pkg) => ({
+          name: pkg.name,
+          image: pkg.image,
+          previewHref: pkg.previewHref,
+        }))}
       />
 
       <PackagesGrid

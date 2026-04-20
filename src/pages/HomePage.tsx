@@ -20,7 +20,7 @@ import { HomeFooter } from "@/components/home/HomeFooter";
 const categories = [
   {
     title: "Bodas",
-    subtitle: "Diseños romanticos y sofisticados para anunciar un gran si con estilo.",
+    subtitle: "Diseños románticos y sofisticados para anunciar un gran sí con estilo.",
     image: weddingIcon,
     emoji: "💍",
   },
@@ -38,7 +38,7 @@ const categories = [
   },
   {
     title: "Eventos",
-    subtitle: "Formatos modernos y versatiles para celebraciones especiales con identidad propia.",
+    subtitle: "Formatos modernos y versátiles para celebraciones especiales con identidad propia.",
     image: eventIcon,
     emoji: "🎈",
   },
@@ -57,7 +57,7 @@ const galleryItems = [
   },
   {
     image: weddingGallery,
-    title: "Invitacion romantica",
+    title: "Invitación romántica",
     heightClass: "h-[26rem]",
   },
   {
@@ -86,14 +86,14 @@ export function HomePage() {
           className="max-w-2xl"
         >
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#1F7A7A]">
-            Categorias
+            Categorías
           </p>
           <h2 className="mt-3 font-serif text-3xl text-[#1A2A44] md:text-4xl">
-            Colecciones para cada tipo de celebracion
+            Colecciones para cada tipo de celebración
           </h2>
           <p className="mt-4 text-base leading-8 text-slate-600">
-            Desde bodas elegantes hasta eventos llenos de color, cada categoria esta pensada para
-            transmitir emocion, estilo y una sensacion premium.
+            Desde bodas elegantes hasta eventos llenos de color, cada categoría está pensada para
+            transmitir emoción, estilo y una sensación premium.
           </p>
         </motion.div>
 

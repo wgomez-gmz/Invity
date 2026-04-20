@@ -1,5 +1,5 @@
 import weddingIcon from "@/assets/icons/anillo-de-bodas.png";
-import xvIcon from "@/assets/icons/VX años.png";
+import xvIcon from "@/assets/icons/XV años.png";
 import baptismIcon from "@/assets/icons/bautizo.png";
 import birthdayIcon from "@/assets/icons/cumpleaños.png";
 import babyIcon from "@/assets/icons/babyshower.png";
@@ -89,8 +89,8 @@ export const catalogEntries: CategoryEntry[] = [
   },
   {
     slug: "xv-anos",
-    shortName: "XV Anos",
-    title: "Invitaciones digitales para XV Anos",
+    shortName: "XV Años",
+    title: "Invitaciones digitales para XV Años",
     description: "Disenos memorables y delicados para una celebracion unica, llena de estilo, luz y personalidad.",
     icon: xvIcon,
     accent: "cat-xv",

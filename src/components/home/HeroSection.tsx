@@ -55,7 +55,7 @@ export function HeroSection({ mockupImage }: HeroSectionProps) {
                 size="lg"
                 className="h-12 rounded-2xl bg-[#1F7A7A] px-7 text-base text-white shadow-lg shadow-[#1F7A7A]/20 hover:bg-[#1b6c6c]"
               >
-                Crear invitacion
+                Crear invitación
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </motion.div>
@@ -105,7 +105,7 @@ export function HeroSection({ mockupImage }: HeroSectionProps) {
                 Magia visual
               </div>
               <p className="mt-2 max-w-[12rem] text-sm text-slate-600">
-                Brillos sutiles, movimiento suave y una presentacion que se siente especial.
+                Brillos sutiles, movimiento suave y una presentación que se siente especial.
               </p>
             </div>
 
@@ -127,20 +127,20 @@ export function HeroSection({ mockupImage }: HeroSectionProps) {
                 <div className="relative rounded-[1.5rem] border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm">
                   <div className="rounded-[1.25rem] bg-white px-4 pb-5 pt-4">
                     <div className="mb-4 flex items-center justify-between text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-slate-400">
-                      <span>Nuestra invitacion</span>
+                      <span>Nuestra invitación</span>
                       <Sparkles className="h-4 w-4 text-[#D4AF37]" />
                     </div>
                     <img
                       src={mockupImage}
-                      alt="Vista previa de una invitacion digital premium"
+                      alt="Vista previa de una invitación digital premium"
                       className="h-[22rem] w-full rounded-[1.15rem] object-cover shadow-lg shadow-slate-900/10"
                     />
                     <div className="mt-4 space-y-2 text-center">
                       <p className="text-xs uppercase tracking-[0.28em] text-[#1F7A7A]">
-                        Elegancia + celebracion
+                        Elegancia + celebración
                       </p>
                       <p className="font-serif text-2xl text-[#1A2A44]">
-                        Una invitacion que emociona antes del evento
+                        Una invitación que emociona antes del evento
                       </p>
                     </div>
                   </div>

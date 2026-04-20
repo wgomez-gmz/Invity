@@ -16,14 +16,14 @@ export function Gallery({ items }: GalleryProps) {
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#1F7A7A]">
-            Galeria
+            Galería
           </p>
           <h2 className="mt-3 font-serif text-3xl text-[#1A2A44] md:text-4xl">
             Diseños pensados para enamorar desde la primera vista
           </h2>
         </div>
         <p className="max-w-lg text-sm leading-7 text-slate-600">
-          Cada invitacion combina celebracion, sofisticacion y un lenguaje visual contemporaneo.
+          Cada invitación combina celebración, sofisticación y un lenguaje visual contemporáneo.
         </p>
       </div>
 
@@ -46,7 +46,7 @@ export function Gallery({ items }: GalleryProps) {
             <div className="absolute inset-0 flex items-end justify-between p-5">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/65">
-                  Invitacion premium
+                  Invitación premium
                 </p>
                 <h3 className="mt-2 text-lg font-semibold text-white">{item.title}</h3>
               </div>

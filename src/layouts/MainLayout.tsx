@@ -4,7 +4,7 @@ import { NavLink, Outlet, useLocation } from "react-router-dom";
 const navItems = [
   { to: "/", label: "Inicio", end: true },
   { to: "/categoria/boda", label: "Boda" },
-  { to: "/categoria/xv-anos", label: "XV Anos" },
+  { to: "/categoria/xv-anos", label: "XV Años" },
   { to: "/categoria/bautizo", label: "Bautizo" },
   { to: "/categoria/cumpleanos", label: "Cumpleanos" },
   { to: "/categoria/baby-shower", label: "Baby Shower" },
