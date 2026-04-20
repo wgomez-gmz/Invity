@@ -112,7 +112,7 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
   invitation: {
     title: "Invitacion",
     names: ["Sofia", "Daniel"],
-    copy: "Deseamos celebrar el amor y la unión con la bendición de Dios, por eso nos complace que nos acompañes a vivir el inicio de este nuevo viaje.",
+    copy: "Deseamos celebrar el amor y la union con la bendicion de Dios, por eso nos complace que nos acompanes a vivir el inicio de este nuevo viaje.",
     day: "Sabado",
     date: "24 - Octubre - 2026",
   },
@@ -132,6 +132,7 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
   countdown: {
     kicker: "Falta muy poco",
     background: countdownBackground,
+    targetDateISO: "2026-10-24T17:00:00-06:00",
     items: [
       { value: "128", label: "Dias" },
       { value: "14", label: "Horas" },
@@ -148,7 +149,7 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
     ],
     supportImage: weddingImageSecondary,
     venueType: "Parroquia",
-    venueName: "El Señor de la Misericordia",
+    venueName: "El Senor de la Misericordia",
     time: "Hora: 17:00 hrs.",
     addressLines: [
       "Direccion:",
@@ -157,10 +158,11 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
       "Col. 50, C.P. 67350,",
       "Monterrey, N.L.",
     ],
+    mapUrl: "https://maps.google.com/?q=Pueblo+Serena+Carr.+Nacional+500+Monterrey",
   },
   reception: {
     sectionLabel: "Celebracion",
-    title: "Recepción",
+    title: "Recepcion",
     slides: [
       { image: receptionSlideOne, alt: "Vista del salon de recepcion con montaje para el evento" },
       { image: receptionSlideTwo, alt: "Espacio de atrium eventos preparado para la recepcion" },
@@ -176,10 +178,11 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
       "Anahuac, C.P. 66457,",
       "San Nicolas de los Garza, N.L.",
     ],
+    mapUrl: "https://maps.google.com/?q=Av.+Manuel+L.+Barragan+325+San+Nicolas+de+los+Garza",
   },
   padrinos: {
     heading: "Nuestros Padrinos",
-    kicker: "Con cariño",
+    kicker: "Con carino",
     slides: [
       {
         image: padrinosSlideOne,
@@ -197,34 +200,40 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
   },
   details: {
     dressCode: {
-      kicker: "Código de Vestimenta",
+      kicker: "Codigo de Vestimenta",
       title: "Formal",
       image: formalDressImage,
       note: "No utilizar color blanco.",
     },
     gifts: {
       kicker: "Mesa de Regalos",
-      title: "Con mucho cariño",
-      copy: "Gracias por su compañía en esta nueva etapa que comenzamos. El regalo es opcional, la asistencia es obligatoria. Si quieres tener un detalle con nosotros dejaremos algunas opciones que recibiremos con mucho cariño.",
+      title: "Con mucho carino",
+      copy: "Gracias por su compania en esta nueva etapa que comenzamos. El regalo es opcional, la asistencia es obligatoria. Si quieres tener un detalle con nosotros dejaremos algunas opciones que recibiremos con mucho carino.",
       eventCode: "#51000000",
       liverpoolLogo: liverpoolGiftImage,
       giftIllustration: giftBoxImage,
       envelopeIcon: envelopeGiftImage,
+      transferLabel: "Transferencia bancaria",
+      transferDetails: [
+        "Banco: Banorte",
+        "Titular: Sofia Daniel Wedding",
+        "CLABE: 072180012345678901",
+      ],
     },
   },
   rsvp: {
-    kicker: "Acompáñanos",
+    kicker: "Acompananos",
     title: "Confirma tu Asistencia",
     photo: weddingImageDetail,
     invitationLabel: "Familia Montiel Leiva",
     familyName: "4 invitados",
-    guestCount: "Con inmensa alegría te invitamos a celebrar nuestra boda.",
+    guestCount: "Con inmensa alegria te invitamos a celebrar nuestra boda.",
     note: "",
-    intro: "Favor de confirmar su presencia, a más tardar un mes antes del evento. Muchas gracias.",
-    dedicationLabel: "Dedica unas bonitas palabras para Yuliana y Jaime:",
+    intro: "Favor de confirmar su presencia, a mas tardar un mes antes del evento. Muchas gracias.",
+    dedicationLabel: "Dedica unas bonitas palabras para Sofia y Daniel:",
   },
   closing: {
-    message: "Nuestra felicidad solo está completa cuando la compartimos con las personas a las que amamos.",
+    message: "Nuestra felicidad solo esta completa cuando la compartimos con las personas a las que amamos.",
     accent: "Te esperamos",
     footerText: "S & D · Nuestra Boda",
   },

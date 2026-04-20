@@ -51,6 +51,7 @@ export type WeddingLocationSection = {
   venueName: string;
   time: string;
   addressLines: string[];
+  mapUrl?: string;
 };
 
 export type WeddingTemplateData = {
@@ -133,6 +134,7 @@ export type WeddingTemplateData = {
     kicker: string;
     background: string;
     items: WeddingCountdownItem[];
+    targetDateISO?: string;
   };
   ceremony: WeddingLocationSection;
   reception: WeddingLocationSection;
@@ -156,6 +158,8 @@ export type WeddingTemplateData = {
       liverpoolLogo: string;
       giftIllustration?: string;
       envelopeIcon: string;
+      transferLabel?: string;
+      transferDetails?: string[];
     };
   };
   rsvp: {
