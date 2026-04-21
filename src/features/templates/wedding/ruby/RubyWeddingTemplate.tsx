@@ -9,6 +9,7 @@ import type {
 import { RubyClosingSection } from "@/features/templates/wedding/ruby/components/RubyClosingSection";
 import { RubyCountdownSection } from "@/features/templates/wedding/ruby/components/RubyCountdownSection";
 import { RubyDetailsSection } from "@/features/templates/wedding/ruby/components/RubyDetailsSection";
+import { RubyGallerySection } from "@/features/templates/wedding/ruby/components/RubyGallerySection";
 import { RubyHeroSection } from "@/features/templates/wedding/ruby/components/RubyHeroSection";
 import { RubyIntroModal } from "@/features/templates/wedding/ruby/components/RubyIntroModal";
 import { RubyInvitationInfoSection } from "@/features/templates/wedding/ruby/components/RubyInvitationInfoSection";
@@ -156,6 +157,15 @@ export function RubyWeddingTemplate({
           style={resolveBackgroundStyle(appearance?.sectionBackgrounds?.quote)}
           textReveal={textReveal}
         />
+
+        {data.gallery ? (
+          <RubyGallerySection
+            gallery={data.gallery}
+            style={resolveBackgroundStyle(appearance?.sectionBackgrounds?.gallery)}
+            prefersReducedMotion={prefersReducedMotion}
+            textReveal={textReveal}
+          />
+        ) : null}
 
         <RubyInvitationInfoSection
           data={data}

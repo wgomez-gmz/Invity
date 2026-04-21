@@ -91,6 +91,7 @@ export type WeddingTemplateData = {
     };
     sectionBackgrounds?: {
       quote?: WeddingBackgroundSpec;
+      gallery?: WeddingBackgroundSpec;
       invitation?: WeddingBackgroundSpec;
       parents?: WeddingBackgroundSpec;
       location?: WeddingBackgroundSpec;
@@ -117,6 +118,12 @@ export type WeddingTemplateData = {
     text: string;
     note: string;
     image: string;
+  };
+  gallery?: {
+    kicker: string;
+    title: string;
+    note: string;
+    slides: WeddingSlide[];
   };
   invitation: {
     title: string;

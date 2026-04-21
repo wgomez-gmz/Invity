@@ -70,6 +70,7 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
     },
     sectionBackgrounds: {
       quote: { type: "color", value: "transparent" },
+      gallery: { type: "color", value: "transparent" },
       invitation: { type: "color", value: "transparent" },
       parents: { type: "color", value: "transparent" },
       location: { type: "color", value: "transparent" },
@@ -108,6 +109,16 @@ export const rubyWeddingTemplateData: WeddingTemplateData = {
     text: "Tantas vidas, tantos siglos, tantos mundos y coincidir.",
     note: "Un instante, una mirada y un destino compartido que hoy queremos celebrar contigo.",
     image: weddingImagePrimary,
+  },
+  gallery: {
+    kicker: "Galeria",
+    title: "Escenas que cuentan nuestra historia",
+    note: "",
+    slides: [
+      { image: weddingImagePrimary, alt: "Pareja abrazandose en una sesion romantica" },
+      { image: weddingImageSecondary, alt: "Detalle romantico de la pareja en una toma editorial" },
+      { image: weddingImageDetail, alt: "Escena cinematografica de la sesion de boda" }
+    ],
   },
   invitation: {
     title: "Invitacion",

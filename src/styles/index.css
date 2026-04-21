@@ -650,6 +650,7 @@ button {
   background-color: var(--ruby-shell-base-color);
   background-image: var(--ruby-shell-top-background);
   background-repeat: no-repeat;
+  overflow-x: clip;
 }
 
 .ruby-surface-section {
@@ -660,6 +661,7 @@ button {
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
+  overflow-x: clip;
 }
 
 .scroll-reveal {
