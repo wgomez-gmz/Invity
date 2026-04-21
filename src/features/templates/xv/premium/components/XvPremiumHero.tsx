@@ -166,23 +166,6 @@ export function XvPremiumHero({
                     Delicada, luminosa y hecha para recordarse.
                   </p>
                 </motion.div>
-                <div className="flex items-center gap-2">
-                  {heroImages.map((image, index) => (
-                    <motion.button
-                      key={image.alt}
-                      type="button"
-                      className={`h-2.5 rounded-full transition-all ${
-                        index === heroIndex
-                          ? "w-10 bg-[var(--xv-gold)]"
-                          : "w-2.5 bg-white/35 hover:bg-white/60"
-                      }`}
-                      whileHover={prefersReducedMotion ? undefined : { scale: 1.12 }}
-                      whileTap={prefersReducedMotion ? undefined : { scale: 0.94 }}
-                      onClick={() => onSelectHero(index)}
-                      aria-label={`Mostrar foto ${index + 1}`}
-                    />
-                  ))}
-                </div>
                 <Button
                   type="button"
                   variant="outline"

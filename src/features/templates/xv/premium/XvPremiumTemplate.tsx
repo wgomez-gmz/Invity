@@ -33,7 +33,7 @@ export function XvPremiumTemplate({
   const prefersReducedMotion = useReducedMotion();
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
   const [galleryIndex, setGalleryIndex] = useState(0);
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
   const [isMusicEnabled, setIsMusicEnabled] = useState(false);
   const [rsvpSent, setRsvpSent] = useState(false);
   const [countdown, setCountdown] = useState(() => createCountdown(data.countdown.targetIso));
@@ -43,13 +43,13 @@ export function XvPremiumTemplate({
   useAmbientLoop(isMusicEnabled);
 
   useEffect(() => {
-    const locked = !isInvitationOpen || lightboxIndex !== null;
+    const locked = !isInvitationOpen || isGalleryModalOpen;
     document.body.style.overflow = locked ? "hidden" : "";
 
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isInvitationOpen, lightboxIndex]);
+  }, [isInvitationOpen, isGalleryModalOpen]);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -101,6 +101,23 @@ export function XvPremiumTemplate({
     });
   }, [data.gallery.images, galleryIndex]);
 
+  useEffect(() => {
+    if (
+      !isInvitationOpen ||
+      isGalleryModalOpen ||
+      data.gallery.images.length <= 1 ||
+      prefersReducedMotion
+    ) {
+      return undefined;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setGalleryIndex((current) => (current + 1) % data.gallery.images.length);
+    }, 4600);
+
+    return () => window.clearInterval(intervalId);
+  }, [isInvitationOpen, isGalleryModalOpen, data.gallery.images.length, prefersReducedMotion]);
+
   const styleVars = useMemo(
     () =>
       ({
@@ -139,8 +156,6 @@ export function XvPremiumTemplate({
   );
 
   const galleryImage = data.gallery.images[galleryIndex];
-  const currentLightboxImage =
-    lightboxIndex === null ? null : data.gallery.images[lightboxIndex];
   const attendanceOptions =
     data.rsvp.attendanceOptions.length > 0
       ? data.rsvp.attendanceOptions
@@ -226,9 +241,16 @@ export function XvPremiumTemplate({
       />
 
       <XvPremiumLightbox
-        image={currentLightboxImage}
+        isOpen={isGalleryModalOpen}
+        images={data.gallery.images}
+        activeIndex={galleryIndex}
         prefersReducedMotion={Boolean(prefersReducedMotion)}
-        onClose={() => setLightboxIndex(null)}
+        onTouchStart={setTouchStartX}
+        onTouchEnd={handleGalleryTouchEnd}
+        onClose={() => setIsGalleryModalOpen(false)}
+        onPrev={() => goToGallery(galleryIndex - 1)}
+        onNext={() => goToGallery(galleryIndex + 1)}
+        onSelect={goToGallery}
       />
 
       <XvPremiumMusicToggle
@@ -273,15 +295,13 @@ export function XvPremiumTemplate({
 
       <XvPremiumGallerySection
         data={data.gallery}
-        galleryIndex={galleryIndex}
         galleryImage={galleryImage}
         prefersReducedMotion={Boolean(prefersReducedMotion)}
         onTouchStart={setTouchStartX}
         onTouchEnd={handleGalleryTouchEnd}
-        onOpenLightbox={() => setLightboxIndex(galleryIndex)}
+        onOpenGallery={() => setIsGalleryModalOpen(true)}
         onPrev={() => goToGallery(galleryIndex - 1)}
         onNext={() => goToGallery(galleryIndex + 1)}
-        onSelect={goToGallery}
         reveal={reveal}
       />
 

@@ -7,35 +7,31 @@ import type { XvReveal } from "@/features/templates/xv/premium/utils";
 
 type XvPremiumGallerySectionProps = {
   data: XvPremiumTemplateData["gallery"];
-  galleryIndex: number;
   galleryImage: XvPremiumTemplateData["gallery"]["images"][number];
   prefersReducedMotion: boolean;
   onTouchStart: (x: number | null) => void;
   onTouchEnd: (x: number) => void;
-  onOpenLightbox: () => void;
+  onOpenGallery: () => void;
   onPrev: () => void;
   onNext: () => void;
-  onSelect: (index: number) => void;
   reveal: (delay?: number, y?: number) => XvReveal;
 };
 
 export function XvPremiumGallerySection({
   data,
-  galleryIndex,
   galleryImage,
   prefersReducedMotion,
   onTouchStart,
   onTouchEnd,
-  onOpenLightbox,
+  onOpenGallery,
   onPrev,
   onNext,
-  onSelect,
   reveal,
 }: XvPremiumGallerySectionProps) {
   return (
     <motion.section {...reveal(0.06, 22)} className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-8 lg:px-12">
       <div className="overflow-hidden rounded-[2.6rem] border border-[rgba(212,95,154,0.14)] bg-[linear-gradient(180deg,rgba(255,250,252,0.98),rgba(253,239,246,0.94))] px-6 py-10 shadow-[0_28px_80px_rgba(117,45,89,0.12)] sm:px-10 sm:py-12">
-      <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mb-10">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-[rgba(212,95,154,0.16)] bg-white px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-[var(--xv-gold)] shadow-[0_10px_25px_rgba(117,45,89,0.08)]">
             <Images className="h-3.5 w-3.5" />
@@ -47,26 +43,6 @@ export function XvPremiumGallerySection({
           <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--xv-ink)]/82 sm:text-base">
             {data.note}
           </p>
-        </div>
-        <div className="flex gap-3">
-          <Button
-            type="button"
-            size="icon"
-            variant="secondary"
-            onClick={onPrev}
-            className="border border-[rgba(212,95,154,0.12)] bg-white text-[var(--xv-accent-primary,#9d248d)] hover:bg-white"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
-          <Button
-            type="button"
-            size="icon"
-            variant="secondary"
-            onClick={onNext}
-            className="border border-[rgba(212,95,154,0.12)] bg-white text-[var(--xv-accent-primary,#9d248d)] hover:bg-white"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </Button>
         </div>
       </div>
 
@@ -81,7 +57,7 @@ export function XvPremiumGallerySection({
             <motion.button
               key={galleryImage.alt}
               type="button"
-              onClick={onOpenLightbox}
+              onClick={onOpenGallery}
               initial={prefersReducedMotion ? undefined : { opacity: 0, scale: 1.04 }}
               animate={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
               exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.98 }}
@@ -107,51 +83,37 @@ export function XvPremiumGallerySection({
               >
                 <Expand className="h-4 w-4" />
               </motion.div>
-              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6 text-left text-white">
-                <div>
-                  <span className="block text-[10px] uppercase tracking-[0.3em] text-[var(--xv-gold)]">
-                    Escena {String(galleryIndex + 1).padStart(2, "0")}
-                  </span>
-                  <span className="mt-2 block max-w-lg font-['Baskervville'] text-2xl leading-tight sm:text-3xl">
-                    {galleryImage.alt}
-                  </span>
-                </div>
-                <span className="text-sm text-white/84">Ver detalle</span>
-              </div>
             </motion.button>
           </AnimatePresence>
         </div>
-
-        <div className="mt-4 grid grid-cols-4 gap-3 sm:grid-cols-7">
-          {data.images.map((image, index) => (
-            <motion.button
-              type="button"
-              key={image.alt}
-              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 12 }}
-              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.45, delay: index * 0.04 }}
-              whileHover={prefersReducedMotion ? undefined : { y: -3, scale: 1.03 }}
-              whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-              className={`aspect-square overflow-hidden rounded-[1.25rem] border transition-all ${
-                index === galleryIndex
-                  ? "border-[var(--xv-gold)] shadow-[0_0_0_1px_rgba(240,214,156,0.2)]"
-                  : "border-white/8 opacity-75 hover:opacity-100"
-              }`}
-              onClick={() => onSelect(index)}
-              aria-label={`Mostrar imagen ${index + 1}`}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="h-full w-full object-cover"
-                style={{ objectPosition: image.position ?? "center center" }}
-                loading="lazy"
-                decoding="async"
-              />
-            </motion.button>
-          ))}
+        <div className="mt-4 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:flex sm:justify-center sm:gap-3">
+          <Button
+            type="button"
+            size="icon"
+            variant="secondary"
+            onClick={onPrev}
+            className="h-10 w-10 border border-[rgba(212,95,154,0.12)] bg-white text-[var(--xv-accent-primary,#9d248d)] hover:bg-white sm:h-10 sm:w-10"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          <Button
+            type="button"
+            onClick={onOpenGallery}
+            className="h-10 w-full rounded-full border border-[rgba(212,95,154,0.2)] bg-[linear-gradient(135deg,rgba(212,95,154,0.95),rgba(165,57,126,0.95))] px-4 text-[10px] uppercase tracking-[0.16em] text-white shadow-[0_14px_36px_rgba(117,45,89,0.24)] transition-transform hover:-translate-y-0.5 hover:brightness-105 sm:w-auto sm:px-5 sm:text-xs sm:tracking-[0.22em]"
+          >
+            Ver galeria
+          </Button>
+          <Button
+            type="button"
+            size="icon"
+            variant="secondary"
+            onClick={onNext}
+            className="h-10 w-10 border border-[rgba(212,95,154,0.12)] bg-white text-[var(--xv-accent-primary,#9d248d)] hover:bg-white sm:h-10 sm:w-10"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
         </div>
+
       </Card>
       </motion.div>
       </div>

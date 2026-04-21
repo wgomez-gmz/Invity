@@ -172,30 +172,54 @@ export function TemplateDemoPage() {
       return undefined;
     }
 
-    const revealNodes = Array.from(document.querySelectorAll<HTMLElement>(".scroll-reveal"));
-    if (revealNodes.length === 0) {
-      return undefined;
-    }
+    let observer: IntersectionObserver | null = null;
+    let retryTimeoutId: number | null = null;
+    let attempts = 0;
+    const maxAttempts = 40;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.18,
-        rootMargin: "0px 0px -8% 0px",
-      },
-    );
+    const attachRevealObserver = () => {
+      const revealNodes = Array.from(document.querySelectorAll<HTMLElement>(".scroll-reveal"));
 
-    revealNodes.forEach((node) => observer.observe(node));
+      // Wedding templates are lazy-loaded; retry until their sections are mounted.
+      if (revealNodes.length === 0) {
+        attempts += 1;
+        if (attempts < maxAttempts) {
+          retryTimeoutId = window.setTimeout(attachRevealObserver, 120);
+        }
+        return;
+      }
 
-    return () => observer.disconnect();
-  }, [isWeddingEditorial, weddingTemplateData]);
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer?.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.18,
+          rootMargin: "0px 0px -8% 0px",
+        },
+      );
+
+      revealNodes.forEach((node) => {
+        if (!node.classList.contains("is-visible")) {
+          observer?.observe(node);
+        }
+      });
+    };
+
+    attachRevealObserver();
+
+    return () => {
+      if (retryTimeoutId !== null) {
+        window.clearTimeout(retryTimeoutId);
+      }
+      observer?.disconnect();
+    };
+  }, [isWeddingEditorial, weddingTemplateData, slug, tier]);
 
   useEffect(() => {
     if (!isWeddingRuby || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
