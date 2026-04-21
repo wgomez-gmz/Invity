@@ -67,3 +67,46 @@ export type BaptismRubyTemplateData = {
     signature: string;
   };
 };
+
+export type BaptismEssentialTemplateData = {
+  key: "essential";
+  hero: {
+    babyName: string;
+    subtitle: string;
+    phrase: string;
+    coverImage: BaptismMediaImage;
+    eventDateIso: string;
+    eventDateLabel: string;
+  };
+  welcome: {
+    title: string;
+    message: string;
+  };
+  details: {
+    date: string;
+    time: string;
+    church: string;
+    mapsUrl: string;
+  };
+  family: {
+    parents: string[];
+    godparents: string[];
+  };
+  reception: {
+    venue: string;
+    time: string;
+    note: string;
+    mapsUrl: string;
+    image?: BaptismMediaImage;
+  };
+  rsvp: {
+    title: string;
+    note: string;
+    whatsappPhone: string;
+    defaultMessage: string;
+  };
+  closing: {
+    phrase: string;
+    signature: string;
+  };
+};

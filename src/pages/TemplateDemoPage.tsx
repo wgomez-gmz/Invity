@@ -13,6 +13,7 @@ import { goldWeddingTemplateData } from "@/features/templates/wedding/gold/templ
 import { rubyWeddingTemplateData } from "@/features/templates/wedding/ruby/templateData";
 import { silverWeddingTemplateData } from "@/features/templates/wedding/silver/templateData";
 import { baptismRubyTemplateData } from "@/features/templates/baptism/ruby/templateData";
+import { baptismEssentialTemplateData } from "@/features/templates/baptism/essential/templateData";
 import { xvGoldTemplateData } from "@/features/templates/xv/gold/templateData";
 import { xvPremiumTemplateData } from "@/features/templates/xv/premium/templateData";
 import { xvSilverTemplateData } from "@/features/templates/xv/silver/templateData";
@@ -50,6 +51,11 @@ const XvSilverTemplate = lazy(() =>
 const BaptismRubyTemplate = lazy(() =>
   import("@/features/templates/baptism/ruby/BaptismRubyTemplate").then((module) => ({
     default: module.BaptismRubyTemplate,
+  })),
+);
+const BaptismEssentialTemplate = lazy(() =>
+  import("@/features/templates/baptism/essential/BaptismEssentialTemplate").then((module) => ({
+    default: module.BaptismEssentialTemplate,
   })),
 );
 
@@ -355,6 +361,18 @@ export function TemplateDemoPage() {
           category={category}
           pkg={pkg}
           data={baptismRubyTemplateData}
+        />
+      </Suspense>
+    );
+  }
+
+  if (category.slug === "bautizo" && pkg.accent === "silver") {
+    return (
+      <Suspense fallback={<TemplateLoadingState />}>
+        <BaptismEssentialTemplate
+          category={category}
+          pkg={pkg}
+          data={baptismEssentialTemplateData}
         />
       </Suspense>
     );
