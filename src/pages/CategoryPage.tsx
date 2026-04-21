@@ -109,11 +109,18 @@ export function CategoryPage() {
     return brandPreviewImage;
   };
 
-  const packageMeta: Record<string, { badge: string; featured?: boolean }> = {
-    silver: { badge: "Entrada premium" },
-    gold: { badge: "Mas popular", featured: true },
-    ruby: { badge: "Signature" },
-  };
+  const packageMeta: Record<string, { badge: string; featured?: boolean }> =
+    category.slug === "bautizo"
+      ? {
+          silver: { badge: "Esencial" },
+          gold: { badge: "Mas popular" },
+          ruby: { badge: "Plus", featured: true },
+        }
+      : {
+          silver: { badge: "Entrada premium" },
+          gold: { badge: "Mas popular", featured: true },
+          ruby: { badge: "Signature" },
+        };
 
   const displayedPackages: PackageDisplay[] = category.packages.map((pkg) => ({
     name: pkg.name,

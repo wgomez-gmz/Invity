@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { goldWeddingTemplateData } from "@/features/templates/wedding/gold/templateData";
 import { rubyWeddingTemplateData } from "@/features/templates/wedding/ruby/templateData";
 import { silverWeddingTemplateData } from "@/features/templates/wedding/silver/templateData";
+import { baptismRubyTemplateData } from "@/features/templates/baptism/ruby/templateData";
 import { xvGoldTemplateData } from "@/features/templates/xv/gold/templateData";
 import { xvPremiumTemplateData } from "@/features/templates/xv/premium/templateData";
 import { xvSilverTemplateData } from "@/features/templates/xv/silver/templateData";
@@ -44,6 +45,11 @@ const XvGoldTemplate = lazy(() =>
 const XvSilverTemplate = lazy(() =>
   import("@/features/templates/xv/silver/XvSilverTemplate").then((module) => ({
     default: module.XvSilverTemplate,
+  })),
+);
+const BaptismRubyTemplate = lazy(() =>
+  import("@/features/templates/baptism/ruby/BaptismRubyTemplate").then((module) => ({
+    default: module.BaptismRubyTemplate,
   })),
 );
 
@@ -337,6 +343,18 @@ export function TemplateDemoPage() {
           category={category}
           pkg={pkg}
           data={xvPremiumTemplateData}
+        />
+      </Suspense>
+    );
+  }
+
+  if (category.slug === "bautizo" && pkg.accent === "ruby") {
+    return (
+      <Suspense fallback={<TemplateLoadingState />}>
+        <BaptismRubyTemplate
+          category={category}
+          pkg={pkg}
+          data={baptismRubyTemplateData}
         />
       </Suspense>
     );

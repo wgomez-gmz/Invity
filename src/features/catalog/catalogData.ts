@@ -5,7 +5,7 @@ import birthdayIcon from "@/assets/icons/cumpleaños.png";
 import babyIcon from "@/assets/icons/babyshower.png";
 
 export type PackageTier = {
-  name: "Ruby" | "Gold" | "Silver";
+  name: "Ruby" | "Gold" | "Silver" | "Plus" | "Esencial";
   subtitle: string;
   price: string;
   accent: "ruby" | "gold" | "silver";
@@ -77,6 +77,40 @@ const sharedPackages: PackageTier[] = [
   },
 ];
 
+const baptismPackages: PackageTier[] = [
+  {
+    name: "Plus",
+    subtitle: "Experiencia premium para bautizo",
+    price: "$2,200",
+    accent: "ruby",
+    features: [
+      "12 meses en linea",
+      "Diseno premium personalizado",
+      "Mensaje de bienvenida",
+      "Cuenta regresiva",
+      "Ceremonia y recepcion",
+      "Galeria premium",
+      "RSVP con pase digital",
+      "Enlace personalizado",
+    ],
+  },
+  {
+    name: "Esencial",
+    subtitle: "Presentacion elegante y funcional",
+    price: "$1,500",
+    accent: "silver",
+    features: [
+      "6 meses en linea",
+      "Diseno base personalizado",
+      "Mensaje de bienvenida",
+      "Cuenta regresiva",
+      "Ceremonia",
+      "Ubicacion",
+      "Confirmacion por formulario",
+    ],
+  },
+];
+
 export const catalogEntries: CategoryEntry[] = [
   {
     slug: "boda",
@@ -103,7 +137,7 @@ export const catalogEntries: CategoryEntry[] = [
     description: "Propuestas serenas y elegantes para compartir un momento familiar con calidez y significado.",
     icon: baptismIcon,
     accent: "cat-baptism",
-    packages: sharedPackages,
+    packages: baptismPackages,
   },
   {
     slug: "cumpleanos",

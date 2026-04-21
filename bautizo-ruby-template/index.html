@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Plantilla premium Bautizo Ruby: cinematica, elegante y reutilizable."
+    />
+    <title>Bautizo Ruby | Premium Template</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="br-body">
+    <header class="br-topbar">
+      <a class="br-topbar__brand" href="#hero">Bautizo Ruby</a>
+      <nav class="br-topbar__nav" aria-label="Navegacion principal">
+        <a href="#story">Historia</a>
+        <a href="#details">Detalles</a>
+        <a href="#gallery">Galeria</a>
+        <a href="#rsvp">RSVP</a>
+      </nav>
+    </header>
+
+    <main class="br-main">
+      <section id="hero" class="br-hero">
+        <div class="br-hero__bg" aria-hidden="true"></div>
+        <div class="br-hero__veil" aria-hidden="true"></div>
+
+        <div class="br-hero__content br-reveal">
+          <p class="br-kicker">Con la bendicion de Dios</p>
+          <h1 class="br-hero__name" id="heroName">Ruby Sofia</h1>
+          <p class="br-hero__subtitle">Mi Santo Bautizo</p>
+          <p class="br-hero__phrase" id="heroPhrase"></p>
+
+          <article class="br-countdown-card" aria-label="Cuenta regresiva">
+            <p class="br-countdown-card__label">Cuenta regresiva</p>
+            <div class="br-countdown" id="countdown">
+              <div class="br-countdown__item">
+                <span id="days">00</span>
+                <small>Dias</small>
+              </div>
+              <div class="br-countdown__item">
+                <span id="hours">00</span>
+                <small>Horas</small>
+              </div>
+              <div class="br-countdown__item">
+                <span id="minutes">00</span>
+                <small>Min</small>
+              </div>
+              <div class="br-countdown__item">
+                <span id="seconds">00</span>
+                <small>Seg</small>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <a class="br-scroll-indicator" href="#story" aria-label="Ir a la historia">
+          <span></span>
+        </a>
+      </section>
+
+      <section id="story" class="br-section br-section--story">
+        <div class="br-narrow br-reveal">
+          <p class="br-kicker">Nuestra historia</p>
+          <h2 class="br-title">Un momento de fe que guarda amor para toda la vida</h2>
+          <div class="br-divider" aria-hidden="true">✦</div>
+          <p class="br-story-copy" id="storyCopy"></p>
+        </div>
+      </section>
+
+      <section id="details" class="br-section">
+        <div class="br-container">
+          <div class="br-section-head br-reveal">
+            <p class="br-kicker">Detalles del evento</p>
+            <h2 class="br-title">Cada instante preparado con amor y elegancia</h2>
+          </div>
+
+          <div class="br-card-grid" id="detailCards"></div>
+
+          <div class="br-center br-reveal">
+            <a
+              id="mapsButton"
+              class="br-btn br-btn--primary"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver ubicacion en Google Maps
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="family" class="br-section br-section--soft">
+        <div class="br-container">
+          <div class="br-section-head br-reveal">
+            <p class="br-kicker">Familia</p>
+            <h2 class="br-title">Padres y padrinos</h2>
+          </div>
+
+          <div class="br-family-grid" id="familyGrid"></div>
+        </div>
+      </section>
+
+      <section id="reception" class="br-section">
+        <div class="br-container">
+          <div class="br-reception br-reveal">
+            <figure class="br-reception__media">
+              <img id="receptionImage" src="" alt="Lugar de recepcion" loading="lazy" />
+            </figure>
+            <article class="br-reception__info">
+              <p class="br-kicker">Recepcion</p>
+              <h2 class="br-title" id="receptionTitle"></h2>
+              <p class="br-pill" id="receptionTime"></p>
+              <p class="br-copy" id="receptionNote"></p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="br-section br-section--gallery">
+        <div class="br-container">
+          <div class="br-section-head br-reveal">
+            <p class="br-kicker">Galeria premium</p>
+            <h2 class="br-title">Recuerdos de luz, ternura y bendicion</h2>
+          </div>
+
+          <div class="br-carousel br-reveal">
+            <button class="br-carousel__nav br-carousel__nav--prev" id="prevSlide" aria-label="Anterior">
+              ‹
+            </button>
+
+            <div class="br-carousel__stage" id="carouselStage">
+              <figure class="br-carousel__frame br-carousel__frame--left">
+                <img id="slideLeft" src="" alt="" loading="lazy" />
+              </figure>
+              <figure class="br-carousel__frame br-carousel__frame--center">
+                <button id="openLightbox" class="br-carousel__focus" type="button" aria-label="Abrir galeria completa">
+                  <img id="slideCenter" src="" alt="" />
+                </button>
+              </figure>
+              <figure class="br-carousel__frame br-carousel__frame--right">
+                <img id="slideRight" src="" alt="" loading="lazy" />
+              </figure>
+            </div>
+
+            <button class="br-carousel__nav br-carousel__nav--next" id="nextSlide" aria-label="Siguiente">
+              ›
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="rsvp" class="br-section br-section--rsvp">
+        <div class="br-container">
+          <article class="br-rsvp-card br-reveal">
+            <p class="br-kicker">RSVP</p>
+            <h2 class="br-title">Confirma tu asistencia</h2>
+            <p class="br-copy" id="rsvpDynamicText"></p>
+            <a
+              id="rsvpWhatsApp"
+              class="br-btn br-btn--primary br-btn--whatsapp"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Confirmar por WhatsApp
+            </a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="br-footer">
+      <p class="br-footer__phrase br-reveal" id="footerPhrase"></p>
+    </footer>
+
+    <aside class="br-lightbox" id="lightbox" aria-hidden="true">
+      <div class="br-lightbox__shell">
+        <button class="br-lightbox__close" id="closeLightbox" aria-label="Cerrar galeria">×</button>
+        <button class="br-lightbox__nav br-lightbox__nav--prev" id="lbPrev" aria-label="Imagen anterior">
+          ‹
+        </button>
+        <img id="lightboxImage" src="" alt="" />
+        <button class="br-lightbox__nav br-lightbox__nav--next" id="lbNext" aria-label="Imagen siguiente">
+          ›
+        </button>
+      </div>
+    </aside>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
