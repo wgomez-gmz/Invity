@@ -12,8 +12,8 @@ export function BaptismRubyFamilySection({ family, reveal }: BaptismRubyFamilySe
   return (
     <motion.section id="family" {...reveal(0.1)} className="mt-8 rounded-[2rem] bg-white/70 p-6 shadow-[0_18px_50px_rgba(24,44,76,0.08)] backdrop-blur-md sm:p-8">
       <div className="text-center">
-        <p className="text-[11px] uppercase tracking-[0.26em] text-[#8e6f15]">Familia</p>
-        <h2 className="mt-4 font-serif text-4xl text-[#193252] sm:text-5xl">Padres y padrinos</h2>
+        <p className="text-[11px] uppercase tracking-[0.26em] text-[#D4AF37]">Familia</p>
+        <h2 className="mt-4 font-serif text-4xl text-[#2B2B2B] sm:text-5xl">Padres y padrinos</h2>
       </div>
 
       <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -21,7 +21,7 @@ export function BaptismRubyFamilySection({ family, reveal }: BaptismRubyFamilySe
           {...reveal(0.12)}
           className="rounded-[1.5rem] border border-[#d4af37]/25 bg-white/85 p-6 text-center shadow-[0_16px_40px_rgba(24,44,76,0.09)]"
         >
-          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#8e6f15]">
+          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#D4AF37]">
             <Heart className="h-4 w-4" />
             Padres
           </span>
@@ -39,7 +39,7 @@ export function BaptismRubyFamilySection({ family, reveal }: BaptismRubyFamilySe
           {...reveal(0.18)}
           className="rounded-[1.5rem] border border-[#d4af37]/25 bg-white/85 p-6 text-center shadow-[0_16px_40px_rgba(24,44,76,0.09)]"
         >
-          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#8e6f15]">
+          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#D4AF37]">
             <Users className="h-4 w-4" />
             Padrinos
           </span>
@@ -56,3 +56,5 @@ export function BaptismRubyFamilySection({ family, reveal }: BaptismRubyFamilySe
     </motion.section>
   );
 }
+
+

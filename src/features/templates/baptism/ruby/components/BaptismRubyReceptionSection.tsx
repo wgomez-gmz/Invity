@@ -35,19 +35,19 @@ export function BaptismRubyReceptionSection({
           {...reveal(0.18)}
           className="rounded-[1.8rem] border border-[#d4af37]/22 bg-white/88 p-6 shadow-[0_20px_56px_rgba(24,44,76,0.12)] backdrop-blur-md"
         >
-          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.26em] text-[#8e6f15]">
+          <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.26em] text-[#D4AF37]">
             <MapPin className="h-4 w-4" />
             Recepcion
           </span>
-          <h3 className="mt-4 font-serif text-4xl text-[#193252]">{reception.venue}</h3>
-          <p className="mt-3 inline-flex rounded-full border border-[#d4af37]/25 bg-white px-4 py-1 text-xs uppercase tracking-[0.18em] text-[#31557c]">
+          <h3 className="mt-4 font-serif text-4xl text-[#2B2B2B]">{reception.venue}</h3>
+          <p className="mt-3 inline-flex rounded-full border border-[#d4af37]/25 bg-white px-4 py-1 text-xs uppercase tracking-[0.18em] text-[#7A7A7A]">
             {reception.time}
           </p>
-          <p className="mt-4 text-sm leading-8 text-slate-600">{reception.note}</p>
+          <p className="mt-4 text-sm leading-8 text-[#7A7A7A]">{reception.note}</p>
           <Button
             type="button"
             onClick={() => window.open(reception.mapsUrl, "_blank", "noopener,noreferrer")}
-            className="mt-5 h-10 rounded-full border border-[#d4af37]/35 bg-[linear-gradient(135deg,#193252,#31557c)] px-6 text-[10px] uppercase tracking-[0.2em] text-white shadow-[0_14px_36px_rgba(26,45,71,0.24)] transition hover:-translate-y-0.5 hover:brightness-105 sm:text-xs"
+            className="mt-5 h-10 rounded-full border border-[#d4af37]/35 bg-[linear-gradient(135deg,#2B2B2B,#7A7A7A)] px-6 text-[10px] uppercase tracking-[0.2em] text-white shadow-[0_14px_36px_rgba(26,45,71,0.24)] transition hover:-translate-y-0.5 hover:brightness-105 sm:text-xs"
           >
             <MapPin className="mr-2 h-4 w-4" />
             Como llegar
@@ -57,3 +57,5 @@ export function BaptismRubyReceptionSection({
     </motion.section>
   );
 }
+
+

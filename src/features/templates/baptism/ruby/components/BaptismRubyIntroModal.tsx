@@ -40,7 +40,7 @@ export function BaptismRubyIntroModal({ data, isOpen, onOpen }: BaptismRubyIntro
               <Button
                 type="button"
                 onClick={onOpen}
-                className="mt-8 h-12 rounded-full border border-white/50 bg-[linear-gradient(135deg,#ffffff,#f8e7bf)] px-8 font-serif text-[13px] uppercase tracking-[0.24em] text-[#193252] hover:bg-white"
+                className="mt-8 h-12 rounded-full border border-white/50 bg-[linear-gradient(135deg,#F8F6F2,#F3E9D2)] px-8 font-serif text-[13px] uppercase tracking-[0.24em] text-[#2B2B2B] hover:bg-white"
               >
                 Abrir invitacion
               </Button>
@@ -51,3 +51,5 @@ export function BaptismRubyIntroModal({ data, isOpen, onOpen }: BaptismRubyIntro
     </AnimatePresence>
   );
 }
+
+

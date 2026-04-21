@@ -40,30 +40,30 @@ export function BaptismRubyRsvpSection({
       className="mt-8 rounded-[2rem] bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.15),transparent_36%),linear-gradient(180deg,#ffffff,#f3f8ff)] p-3 sm:p-5"
     >
       <Card className="mx-auto max-w-3xl rounded-[2rem] border-[#d4af37]/22 bg-white/90 p-6 shadow-[0_20px_60px_rgba(20,40,68,0.1)]">
-        <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-[#8e6f15]">
+        <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-[#D4AF37]">
           <MessageCircle className="h-4 w-4" />
           RSVP
         </span>
-        <h3 className="mt-4 font-serif text-3xl text-[#193252]">{rsvp.title}</h3>
-        <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">{rsvp.note}</p>
+        <h3 className="mt-4 font-serif text-3xl text-[#2B2B2B]">{rsvp.title}</h3>
+        <p className="mt-3 max-w-2xl text-sm leading-7 text-[#7A7A7A]">{rsvp.note}</p>
 
         <div className="mt-6 grid gap-4 md:grid-cols-[1fr_0.92fr] md:items-start">
-          <div className="rounded-[1.4rem] border border-[#d4af37]/28 bg-[linear-gradient(180deg,#fffef8,#f8fbff)] p-4 shadow-[0_14px_34px_rgba(24,44,76,0.1)]">
-            <p className="text-[10px] uppercase tracking-[0.24em] text-[#8e6f15]">{rsvp.passTitle}</p>
-            <h4 className="mt-2 font-serif text-3xl text-[#193252]">{passName}</h4>
-            <p className="mt-1 inline-flex rounded-full border border-[#d4af37]/30 bg-white px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-[#31557c]">
+          <div className="rounded-[1.4rem] border border-[#d4af37]/28 bg-[linear-gradient(180deg,#fffef8,#EFEAE4)] p-4 shadow-[0_14px_34px_rgba(24,44,76,0.1)]">
+            <p className="text-[10px] uppercase tracking-[0.24em] text-[#D4AF37]">{rsvp.passTitle}</p>
+            <h4 className="mt-2 font-serif text-3xl text-[#2B2B2B]">{passName}</h4>
+            <p className="mt-1 inline-flex rounded-full border border-[#d4af37]/30 bg-white px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-[#7A7A7A]">
               {maxGuests} {maxGuests === 1 ? "persona" : "personas"}
             </p>
-            <p className="mt-3 text-xs uppercase tracking-[0.2em] text-[#6c7d97]">{rsvp.passNote}</p>
+            <p className="mt-3 text-xs uppercase tracking-[0.2em] text-[#7A7A7A]">{rsvp.passNote}</p>
           </div>
 
           <form className="grid gap-3" onSubmit={onSubmit}>
-            <label className="grid gap-2 text-sm text-[#31557c]">
+            <label className="grid gap-2 text-sm text-[#7A7A7A]">
               {rsvp.guestCountLabel}
               <select
                 value={guestCount}
                 onChange={(event) => onGuestCountChange(Number(event.target.value))}
-                className="h-11 rounded-xl border border-[#d4af37]/28 bg-white px-4 text-slate-700 outline-none transition focus:border-[#193252]"
+                className="h-11 rounded-xl border border-[#d4af37]/28 bg-white px-4 text-[#2B2B2B] outline-none transition focus:border-[#2B2B2B]"
               >
                 {countOptions.map((count) => (
                   <option key={count} value={count}>
@@ -73,18 +73,18 @@ export function BaptismRubyRsvpSection({
               </select>
             </label>
 
-            <label className="grid gap-2 text-sm text-[#31557c]">
+            <label className="grid gap-2 text-sm text-[#7A7A7A]">
               {rsvp.dedicationLabel || `Dedica unas bonitas palabras para ${baptizedName}`}
               <textarea
                 value={dedication}
                 onChange={(event) => onDedicationChange(event.target.value)}
-                className="min-h-24 rounded-xl border border-[#d4af37]/28 bg-white px-4 py-3 text-slate-700 outline-none transition focus:border-[#193252]"
+                className="min-h-24 rounded-xl border border-[#d4af37]/28 bg-white px-4 py-3 text-[#2B2B2B] outline-none transition focus:border-[#2B2B2B]"
                 placeholder={rsvp.dedicationPlaceholder}
               />
             </label>
             <Button
               type="submit"
-              className="mt-2 h-11 rounded-full bg-[linear-gradient(135deg,#193252,#31557c)] px-7 text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_14px_36px_rgba(26,45,71,0.24)] transition hover:-translate-y-0.5 hover:brightness-105"
+              className="mt-2 h-11 rounded-full bg-[linear-gradient(135deg,#2B2B2B,#7A7A7A)] px-7 text-[11px] uppercase tracking-[0.2em] text-white shadow-[0_14px_36px_rgba(26,45,71,0.24)] transition hover:-translate-y-0.5 hover:brightness-105"
             >
               Confirmar
             </Button>
@@ -95,3 +95,5 @@ export function BaptismRubyRsvpSection({
     </motion.section>
   );
 }
+
+

@@ -180,7 +180,7 @@ export function BaptismRubyTemplate({ category, pkg, data }: BaptismRubyTemplate
   };
 
   return (
-    <div className="template-shell relative min-h-screen max-w-full overflow-x-clip bg-[#fdfcff] text-slate-700">
+    <div className="template-shell relative min-h-screen max-w-full overflow-x-clip bg-[#F8F6F2] text-[#2B2B2B]">
       <BaptismRubyIntroModal
         data={data}
         isOpen={isInvitationOpen}
@@ -188,7 +188,7 @@ export function BaptismRubyTemplate({ category, pkg, data }: BaptismRubyTemplate
       />
 
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.12),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(151,193,255,0.18),transparent_24%),linear-gradient(180deg,#ffffff,#f8f8fd)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.14),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(197,216,232,0.24),transparent_24%),linear-gradient(180deg,#F8F6F2,#EFEAE4)]" />
       </div>
 
       <div className="relative pb-20">
@@ -263,3 +263,5 @@ export function BaptismRubyTemplate({ category, pkg, data }: BaptismRubyTemplate
     </div>
   );
 }
+
+

@@ -103,3 +103,4 @@ export const baptismRubyTemplateData: BaptismRubyTemplateData = {
     signature: "Con amor, Familia Martinez Lopez",
   },
 };
+

@@ -19,6 +19,8 @@ import weddingSilverPreviewImage from "@/assets/boda/Silver/image.png";
 import xvGoldPreviewImage from "@/assets/xv/Gold/foto.png";
 import xvRubyPreviewImage from "@/assets/xv/Ruby/Galeria/xv.png";
 import xvSilverPreviewImage from "@/assets/xv/silver/foto1.png";
+import baptismPlusPreviewImage from "@/assets/bautizo/ruby/bebe1.png";
+import baptismEssentialPreviewImage from "@/assets/bautizo/esencial/bebe1.png";
 
 export function CategoryPage() {
   const { slug } = useParams();
@@ -106,6 +108,12 @@ export function CategoryPage() {
       if (accent === "silver") return xvSilverPreviewImage;
     }
 
+    if (category.slug === "bautizo") {
+      if (accent === "ruby") return baptismPlusPreviewImage;
+      if (accent === "silver") return baptismEssentialPreviewImage;
+      return baptismPlusPreviewImage;
+    }
+
     return brandPreviewImage;
   };
 
@@ -137,6 +145,8 @@ export function CategoryPage() {
     displayedPackages.find((pkg) => pkg.featured)?.previewHref ??
     displayedPackages[0]?.previewHref ??
     "/";
+  const featuredPreviewImage =
+    displayedPackages.find((pkg) => pkg.featured)?.image ?? displayedPackages[0]?.image ?? brandPreviewImage;
 
   const heroContent =
     heroContentBySlug[category.slug] ?? {
@@ -153,7 +163,7 @@ export function CategoryPage() {
         subtitle={heroContent.subtitle}
         categoryName={category.shortName}
         icon={category.icon}
-        previewImage={getPreviewImage("gold")}
+        previewImage={featuredPreviewImage}
         previewHref={featuredPreview}
         previewSlides={displayedPackages.map((pkg) => ({
           name: pkg.name,

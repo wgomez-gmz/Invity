@@ -11,15 +11,17 @@ export function BaptismRubyTopbar({ category, pkg }: BaptismRubyTopbarProps) {
     <div className="sticky top-0 z-40 border-b border-[#d4af37]/15 bg-white/80 backdrop-blur-xl">
       <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
         <Link
-          className="text-[11px] uppercase tracking-[0.28em] text-[#31557c] transition hover:text-[#193252]"
+          className="text-[11px] uppercase tracking-[0.28em] text-[#7A7A7A] transition hover:text-[#2B2B2B]"
           to={`/categoria/${category.slug}`}
         >
           Regresar a {category.shortName}
         </Link>
-        <span className="rounded-full border border-[#d4af37]/30 bg-[#fff9ea] px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-[#8e6f15]">
+        <span className="rounded-full border border-[#d4af37]/30 bg-[#EFEAE4] px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-[#D4AF37]">
           {category.shortName} / {pkg.name}
         </span>
       </div>
     </div>
   );
 }
+
+
